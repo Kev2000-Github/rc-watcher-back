@@ -1,5 +1,6 @@
 const { responseData: roleResponseData } = require('../roles/helper')
 const { responseData: companyResponseData } = require('../companies/helper')
+const {Roles, Companies, Countries} = require('../../database/models')
 
 module.exports.responseData = (user) => {
     return user ? {
@@ -11,3 +12,5 @@ module.exports.responseData = (user) => {
         Role: roleResponseData(user.Role)
     } : null
 }
+
+module.exports.includeOpts = {include: [Roles, {model: Companies, include: [Countries]}]}

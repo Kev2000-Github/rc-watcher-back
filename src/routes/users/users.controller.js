@@ -1,12 +1,10 @@
 
 const { controllerWrapper } = require('../../utils/common')
-const {Users, Roles, Companies, Countries} = require('../../database/models')
+const {Users} = require('../../database/models')
 const { paginate } = require('../../database/helper')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const { messages } = require('./messages')
-const { responseData } = require('./helper')
-
-const includeOpts = {include: [Roles, {model: Companies, include: [Countries]}]}
+const { responseData, includeOpts } = require('./helper')
 
 module.exports.get_users = controllerWrapper(async (req, res) => {
     const pagination = req.pagination
@@ -15,7 +13,6 @@ module.exports.get_users = controllerWrapper(async (req, res) => {
     users.data = users.data.map(user => responseData(user))
     res.json({...users})
 })
-
 
 module.exports.get_users_id = controllerWrapper(async (req, res) => {
     const {id} = req.params
