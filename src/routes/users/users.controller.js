@@ -4,20 +4,7 @@ const {Users, Roles, Companies, Countries} = require('../../database/models')
 const { paginate } = require('../../database/helper')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const { messages } = require('./messages')
-const { responseData: roleResponseData } = require('../roles/roles.controller')
-const { responseData: companyResponseData } = require('../companies/companies.controller')
-
-const responseData = (user) => {
-    return user ? {
-        id: user.id,
-        username: user.username,
-        fullName: user.fullName,
-        email: user.email,
-        Company: companyResponseData(user.Company),
-        Role: roleResponseData(user.Role)
-    } : null
-}
-module.exports.responseData = responseData
+const { responseData } = require('./helper')
 
 const includeOpts = {include: [Roles, {model: Companies, include: [Countries]}]}
 

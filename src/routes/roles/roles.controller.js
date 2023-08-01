@@ -2,14 +2,7 @@
 const { controllerWrapper } = require('../../utils/common')
 const {Roles} = require('../../database/models')
 const { paginate } = require('../../database/helper')
-
-const responseData = (role) => {
-    return role ? {
-        id: role.id,
-        name: role.name
-    } : null
-}
-module.exports.responseData = responseData
+const { responseData } = require('./helper')
 
 module.exports.get_roles = controllerWrapper(async (req, res) => {
     const pagination = req.pagination

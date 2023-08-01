@@ -2,14 +2,7 @@
 const { controllerWrapper } = require('../../utils/common')
 const { Countries } = require('../../database/models')
 const { paginate } = require('../../database/helper')
-
-const responseData = (country) => {
-    return country ? {
-        id: country.id,
-        name: country.name
-    } : null
-}
-module.exports.responseData = responseData
+const { responseData } = require('./helper')
 
 module.exports.get_countries = controllerWrapper(async (req, res) => {
     const pagination = req.pagination
