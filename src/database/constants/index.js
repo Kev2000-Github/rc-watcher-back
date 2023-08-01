@@ -21,9 +21,15 @@ const DOCUMENT_TYPE = {
     PDF: 'pdf'
 }
 
+const ROLES = {
+    ADMIN: 'admin',
+    OPERATOR: 'operativo'
+}
+
 module.exports = {
     SOLUTION_STATE,
     ALERT_STATE,
     ALERT_PRIORITY,
-    DOCUMENT_TYPE
+    DOCUMENT_TYPE,
+    ROLES
 }

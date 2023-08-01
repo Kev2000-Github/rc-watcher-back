@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
                 through: models.UserSolutions,
                 foreignKey: 'responsibleId'
             })
+            Users.belongsTo(models.Roles, {
+                foreignKey: 'roleId'
+            })
         }
     }
     Users.init({
@@ -24,12 +27,12 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.UUIDV4
         },
-        companyId: {
+        companySlug: {
             type: DataTypes.STRING,
             allowNull: false,
             references: {
                 model: 'companies',
-                key: 'id'
+                key: 'slug'
             }
         },
         username: {
@@ -53,7 +56,15 @@ module.exports = (sequelize, DataTypes) => {
         fullName: {
             type: DataTypes.STRING,
             allowNull: false
-        }
+        },
+        roleId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'roles',
+                key: 'id'
+            }
+        },
     }, {
         sequelize,
         tableName: 'users',

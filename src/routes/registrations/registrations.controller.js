@@ -1,21 +1,25 @@
 
 const { controllerWrapper } = require('../../utils/common')
-const {Users, Companies, Sessions, Countries, sequelize} = require('../../database/models')
+const {Users, Companies, Sessions, Countries, Roles, sequelize} = require('../../database/models')
+const { ROLES } = require('../../database/constants')
 const uuid = require('uuid').v4
 
 module.exports.post_registrations = controllerWrapper(async (req, res) => {
-    return sequelize.transaction(async transaction => {
+    await sequelize.transaction(async transaction => {
         const {user, company} = req.body
         const {fullName, username, password, email} = user
         const newCompany = await Companies.create({
             id: uuid(),
+            slug: company.companyId,
             name: company.name,
             country: company.countryId,
             address: company.address
         }, {transaction})
+        const role = await Roles.findOne({where: {name: ROLES.ADMIN}})
         const newUser = await Users.create({
             id: uuid(),
-            companyId: newCompany.id,
+            companySlug: newCompany.slug,
+            roleId: role.id,
             fullName, 
             username, 
             password, 
@@ -26,7 +30,6 @@ module.exports.post_registrations = controllerWrapper(async (req, res) => {
             userId: newUser.id
         }, {transaction})
         const country = await Countries.findByPk(company.countryId)
-
         res.json({
             company: {
                 id: company.id,
@@ -36,6 +39,7 @@ module.exports.post_registrations = controllerWrapper(async (req, res) => {
             }, 
             user: {
                 id: user.id,
+                role: role.name,
                 username: user.username,
                 fullName: user.fullName,
                 email: user.email,
