@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('countries', {
+        await queryInterface.createTable('companies', {
             id: {
                 allowNull: false,
                 primaryKey: true,
@@ -12,9 +12,16 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            iso3: {
+            country: {
                 type: Sequelize.STRING,
-                allowNull: false
+                allowNull: false,
+                references: {
+                    model: 'countries',
+                    key: 'id'
+                }
+            },
+            address: {
+                type: Sequelize.STRING
             },
             createdAt: {
                 type: Sequelize.DATE,
@@ -30,6 +37,6 @@ module.exports = {
         })
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('countries')
+        await queryInterface.dropTable('companies')
     }
 }

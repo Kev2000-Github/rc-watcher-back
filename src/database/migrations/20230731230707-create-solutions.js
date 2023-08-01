@@ -1,19 +1,31 @@
 'use strict'
+
+const { enumArray } = require('../helper')
+const { SOLUTION_STATE } = require('../constants')
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('countries', {
+        await queryInterface.createTable('solutions', {
             id: {
                 allowNull: false,
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            name: {
+            title: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            iso3: {
+            description: {
                 type: Sequelize.STRING,
+                allowNull: false
+            },
+            createdBy: {
+                type: Sequelize.STRING,
+                allowNull: false
+            },
+            state: {
+                type: Sequelize.ENUM(...enumArray(SOLUTION_STATE)),
                 allowNull: false
             },
             createdAt: {
@@ -30,6 +42,6 @@ module.exports = {
         })
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('countries')
+        await queryInterface.dropTable('solutions')
     }
 }

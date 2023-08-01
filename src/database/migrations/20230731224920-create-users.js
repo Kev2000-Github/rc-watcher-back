@@ -2,17 +2,27 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('countries', {
+        await queryInterface.createTable('users', {
             id: {
                 allowNull: false,
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            name: {
+            username: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                unique: true
+            },
+            email: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                unique: true
+            },
+            password: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            iso3: {
+            fullName: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
@@ -30,6 +40,6 @@ module.exports = {
         })
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('countries')
+        await queryInterface.dropTable('users')
     }
 }

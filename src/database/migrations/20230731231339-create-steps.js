@@ -2,17 +2,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('countries', {
+        await queryInterface.createTable('steps', {
             id: {
                 allowNull: false,
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            name: {
+            solutionId: {
                 type: Sequelize.STRING,
-                allowNull: false
+                allowNull: false,
+                references: {
+                    model: 'solutions',
+                    key: 'id'
+                }
             },
-            iso3: {
+            description: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
@@ -30,6 +34,6 @@ module.exports = {
         })
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('countries')
+        await queryInterface.dropTable('steps')
     }
 }

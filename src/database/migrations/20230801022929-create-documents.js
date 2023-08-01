@@ -1,19 +1,37 @@
 'use strict'
+const { enumArray } = require('../helper')
+const { DOCUMENT_TYPE } = require('../constants')
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('countries', {
+        await queryInterface.createTable('documents', {
             id: {
                 allowNull: false,
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            name: {
+            companyId: {
                 type: Sequelize.STRING,
-                allowNull: false
+                allowNull: false,
+                references: {
+                    model: 'companies',
+                    key: 'id'
+                }
             },
-            iso3: {
+            questionId: {
                 type: Sequelize.STRING,
+                allowNull: false,
+                references: {
+                    model: 'questions',
+                    key: 'id'
+                }
+            },
+            type: {
+                type: Sequelize.ENUM(...enumArray(DOCUMENT_TYPE))
+            },
+            file: {
+                type: Sequelize.TEXT,
                 allowNull: false
             },
             createdAt: {
@@ -30,6 +48,6 @@ module.exports = {
         })
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('countries')
+        await queryInterface.dropTable('documents')
     }
 }

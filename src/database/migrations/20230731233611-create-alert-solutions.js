@@ -2,19 +2,22 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('countries', {
-            id: {
+        await queryInterface.createTable('alertSolutions', {
+            alertId: {
+                type: Sequelize.STRING,
                 allowNull: false,
-                primaryKey: true,
-                type: Sequelize.STRING
+                references: {
+                    model: 'alerts',
+                    key: 'id'
+                }
             },
-            name: {
+            solutionId: {
                 type: Sequelize.STRING,
-                allowNull: false
-            },
-            iso3: {
-                type: Sequelize.STRING,
-                allowNull: false
+                allowNull: false,
+                references: {
+                    model: 'solutions',
+                    key: 'id'
+                }
             },
             createdAt: {
                 type: Sequelize.DATE,
@@ -30,6 +33,6 @@ module.exports = {
         })
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('countries')
+        await queryInterface.dropTable('alertSolutions')
     }
 }
