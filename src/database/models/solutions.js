@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
             Solutions.belongsToMany(models.Alerts, {
                 through: models.AlertSolutions
             })
-            Solutions.belongsToMany(models.Solutions, {
+            Solutions.belongsToMany(models.Users, {
                 through: models.UserSolutions
             })
         }

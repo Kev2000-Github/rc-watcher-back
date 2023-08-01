@@ -24,6 +24,14 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.UUIDV4
         },
+        companyId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'companies',
+                key: 'id'
+            }
+        },
         username: {
             type: DataTypes.STRING,
             unique: {
