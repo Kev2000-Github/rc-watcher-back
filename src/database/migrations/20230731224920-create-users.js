@@ -8,12 +8,12 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            companySlug: {
+            companyId: {
                 type: Sequelize.STRING,
                 allowNull: false,
                 references: {
                     model: 'companies',
-                    key: 'slug'
+                    key: 'id'
                 }
             },
             roleId: {

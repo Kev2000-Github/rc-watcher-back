@@ -6,7 +6,7 @@ const controller = require('./users.controller')
 const {validateRequestSchema, validateResponseSchema, pagination, authentication} = require('../../middlewares')
 
 router.get(
-    '/', 
+    '/:companyId', 
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'users.in-get-users.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'users.out-get-users.schema.js'))),
     authentication,
@@ -15,7 +15,7 @@ router.get(
 )
 
 router.get(
-    '/:id', 
+    '/:companyId/:id', 
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'users.in-get-users-id.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'users.out-get-users-id.schema.js'))),
     authentication,

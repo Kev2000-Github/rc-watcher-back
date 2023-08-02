@@ -20,8 +20,7 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'roleId'
             })
             Users.belongsTo(models.Companies, {
-                foreignKey: 'companySlug',
-                targetKey: 'slug'
+                foreignKey: 'companyId'
             })
         }
     }
@@ -31,12 +30,12 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.UUIDV4
         },
-        companySlug: {
+        companyId: {
             type: DataTypes.STRING,
             allowNull: false,
             references: {
                 model: 'companies',
-                key: 'slug'
+                key: 'id'
             }
         },
         username: {

@@ -1,14 +1,16 @@
 
 const { controllerWrapper } = require('../../utils/common')
-const {Users, Sessions, Roles} = require('../../database/models')
+const {Users, Sessions, Roles, Companies} = require('../../database/models')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const { messages } = require('./messages')
 const { verifyPassword } = require('../../utils/common')
+const { responseData } = require('../users/helper')
 const uuid = require('uuid').v4
 
 module.exports.post_auths = controllerWrapper(async (req, res) => {
-    const {companyId, username, password} = req.body
-    const user = await Users.findOne({where: {username, companySlug: companyId}, include: [Roles]})
+    const {companyId: companySlug, username, password} = req.body
+    const includeOpts = [Roles, {model: Companies, required: true, where: {slug: companySlug}}]
+    const user = await Users.findOne({where: {username}, include: includeOpts})
     if(!user) throw HttpStatusError.unauthorize(messages.credentials)
     const isSame = await verifyPassword(password, user.password)
     if(!isSame) throw HttpStatusError.unauthorize(messages.credentials)
@@ -17,13 +19,7 @@ module.exports.post_auths = controllerWrapper(async (req, res) => {
         userId: user.id
     })
     res.json({
-        user: {
-            id: user.id,
-            role: user.Role.name,
-            username: user.username,
-            fullName: user.fullName,
-            email: user.email
-        },
+        user: responseData(user),
         session: session.id
     })
 })
