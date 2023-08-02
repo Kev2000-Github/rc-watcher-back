@@ -1,4 +1,5 @@
 const { responseData: countryResponseData } = require('../countries/helper')
+const {Countries} = require('../../database/models')
 
 module.exports.responseData = (company) => {
     return company ? {
@@ -8,3 +9,5 @@ module.exports.responseData = (company) => {
         Country: countryResponseData(company.Country)
     } : null
 }
+
+module.exports.includeOpts = {include: [Countries]}

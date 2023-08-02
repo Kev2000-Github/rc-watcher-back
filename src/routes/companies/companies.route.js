@@ -16,6 +16,13 @@ router.get(
     pagination,
     controller.get_companies
 )
+
+router.get(
+    '/:companyId', 
+    validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'companies.in-get-companies-id.schema.js'))),
+    validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'companies.out-get-companies-id.schema.js'))),
+    controller.get_companies_id
+)
 //ROUTES ABOVE --DON'T TOUCH THIS--
 module.exports = {
     companiesRouter: router
