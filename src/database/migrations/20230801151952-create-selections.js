@@ -20,11 +20,7 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            frequencyScore: {
-                type: Sequelize.FLOAT,
-                allowNull: false
-            },
-            controlScore: {
+            riskScore: {
                 type: Sequelize.FLOAT,
                 allowNull: false
             },

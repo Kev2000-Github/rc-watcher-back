@@ -33,11 +33,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        frequencyScore: {
-            type: DataTypes.FLOAT,
-            allowNull: false,
-        },
-        controlScore: {
+        riskScore: {
             type: DataTypes.FLOAT,
             allowNull: false,
         }

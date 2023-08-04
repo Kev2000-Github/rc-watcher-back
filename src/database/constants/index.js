@@ -26,10 +26,17 @@ const ROLES = {
     OPERATOR: 'operativo'
 }
 
+const REGULATIONS = {
+    AML: 'AML',
+    TAXES: 'Impuestos',
+    SECURITY: 'Seguridad'
+}
+
 module.exports = {
     SOLUTION_STATE,
     ALERT_STATE,
     ALERT_PRIORITY,
     DOCUMENT_TYPE,
-    ROLES
+    ROLES,
+    REGULATIONS
 }

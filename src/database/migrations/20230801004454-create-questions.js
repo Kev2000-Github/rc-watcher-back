@@ -16,6 +16,14 @@ module.exports = {
                     key: 'id'
                 }
             },
+            quizId: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                references: {
+                    model: 'quizzes',
+                    key: 'id'
+                }
+            },
             description: {
                 type: Sequelize.STRING,
                 allowNull: false
@@ -24,7 +32,7 @@ module.exports = {
                 type: Sequelize.BOOLEAN,
                 allowNull: false
             },
-            hasFrequencyPoints: {
+            isMultiple: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false
             },

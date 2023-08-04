@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
             Questions.belongsTo(models.Risks, {
                 foreignKey: 'riskId'
             })
+            Questions.belongsTo(models.Quizzes, {
+                foreignKey: 'quizId'
+            })
         }
     }
     Questions.init({
@@ -29,6 +32,14 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'id'
             }
         },
+        quizId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'quizzes',
+                key: 'id'
+            }
+        },
         description: {
             type: DataTypes.STRING,
             allowNull: false
@@ -37,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        hasFrequencyPoints: {
+        isMultiple: {
             type: DataTypes.BOOLEAN,
             allowNull: false
         }
