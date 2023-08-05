@@ -1,641 +1,624 @@
 [
     {
+        "quizName": "Impuestos 1",
+        "description": "Evalúa cómo gestionas tus impuestos y calcula tu nivel de riesgo fiscal. ¡Ideal para principiantes en temas tributarios!",
         "regulation": "Impuestos",
-        "risk": "Riesgo de Cumplimiento de Impuestos",
-        "quiz": "Impuestos 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo aseguran el cumplimiento de las regulaciones fiscales y los requisitos de informes para su negocio?",
-        "options": [
+        "questions": [
             {
-                "description": "Contamos con un departamento de impuestos dedicado que revisa regularmente las leyes fiscales y garantiza declaraciones de impuestos precisas y oportunas.",
-                "riskScore": 0
+                "risk": "Riesgo de Cumplimiento de Impuestos",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo aseguran el cumplimiento de las regulaciones fiscales y los requisitos de informes para su negocio?",
+                "options": [
+                    {
+                        "description": "Contamos con un departamento de impuestos dedicado que revisa regularmente las leyes fiscales y garantiza declaraciones de impuestos precisas y oportunas.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Dependemos de consultores fiscales externos para manejar nuestras obligaciones fiscales y recibir orientación sobre asuntos de cumplimiento.",
+                        "riskScore": 0.4
+                    },
+                    {
+                        "description": "El cumplimiento fiscal es un desafío para nosotros y hemos enfrentado dificultades para cumplir con los plazos de presentación de informes.",
+                        "riskScore": 0.8
+                    }
+                ]
             },
             {
-                "description": "Dependemos de consultores fiscales externos para manejar nuestras obligaciones fiscales y recibir orientación sobre asuntos de cumplimiento.",
-                "riskScore": 0.4
+                "risk": "Riesgo de Cumplimiento de Impuestos",
+                "hasDoc": false,
+                "isMultiple": true,
+                "question": "Que impuestos se estan declarando actualmente en su empresa?",
+                "options": [
+                    {
+                        "description": "Impuesto sobre la Renta",
+                        "riskScore": -0.2
+                    },
+                    {
+                        "description": "Impuesto sobre las Sociedades.",
+                        "riskScore": -0.2
+                    },
+                    {
+                        "description": "Impuesto sobre la Nomina.",
+                        "riskScore": -0.4
+                    },
+                    {
+                        "description": "Impuesto a la Propiedad.",
+                        "riskScore": -0.2
+                    }
+                ]
             },
             {
-                "description": "El cumplimiento fiscal es un desafío para nosotros y hemos enfrentado dificultades para cumplir con los plazos de presentación de informes.",
-                "riskScore": 0.8
+                "risk": "Riesgo de Planificación Tributaria",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo identifican y aplican deducciones, créditos e incentivos fiscales relevantes para optimizar su posición fiscal?",
+                "options": [
+                    {
+                        "description": "Realizamos ejercicios regulares de planificación fiscal para identificar deducciones y créditos elegibles, lo que resulta en ahorros fiscales.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "La identificación de incentivos fiscales no es una prioridad, lo que puede resultar en pérdida de potenciales ahorros fiscales.",
+                        "riskScore": 0.6
+                    },
+                    {
+                        "description": "Actualmente no estamos al tanto de ninguna deducción o crédito fiscal específico aplicable a nuestro negocio.",
+                        "riskScore": 1
+                    }
+                ]
+            },
+            {
+                "risk": "Riesgo Tributario Internacional",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "Describa su proceso para manejar transacciones transfronterizas y cumplir con las regulaciones fiscales internacionales.",
+                "options": [
+                    {
+                        "description": "Contamos con un equipo dedicado que monitorea y garantiza el cumplimiento de las regulaciones fiscales internacionales para transacciones transfronterizas.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Las transacciones transfronterizas se gestionan caso por caso, y es posible que no estemos completamente informados de todas las implicaciones fiscales internacionales.",
+                        "riskScore": 0.3
+                    },
+                    {
+                        "description": "Tenemos poca experiencia con transacciones transfronterizas.",
+                        "riskScore": 0.9
+                    }
+                ]
+            },
+            {
+                "risk": "Riesgo de Cumplimiento de Impuestos",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo administran y mantienen registros y documentación adecuados para respaldar sus declaraciones de impuestos?",
+                "options": [
+                    {
+                        "description": "Mantenemos registros bien organizados y detallados para respaldar todas las transacciones y declaraciones de impuestos relacionadas.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Las prácticas de conservación de registros son inconsistentes y podríamos enfrentar dificultades al proporcionar documentación durante auditorías fiscales.",
+                        "riskScore": 0.7
+                    },
+                    {
+                        "description": "No tenemos un proceso estructurado para conservar registros, lo que podría resultar en dificultades durante la presentación de informes de impuestos.",
+                        "riskScore": 0.9
+                    }
+                ]
+            },
+            {
+                "risk": "Riesgo de Auditoría Tributaria",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo manejan auditorías fiscales y responden a las consultas de las autoridades fiscales?",
+                "options": [
+                    {
+                        "description": "Tenemos una estrategia de respuesta preparada y mantenemos una comunicación abierta con las autoridades fiscales durante las auditorías.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Las auditorías fiscales suelen ser estresantes y pueden resultar en retrasos debido a la falta de preparación.",
+                        "riskScore": 0.7
+                    },
+                    {
+                        "description": "Hasta ahora, no hemos enfrentado ninguna auditoría fiscal o consulta por parte de las autoridades fiscales.",
+                        "riskScore": 0.8
+                    }
+                ]
+            },
+            {
+                "risk": "Riesgo de Cumplimiento de Impuestos",
+                "hasDoc": true,
+                "isMultiple": false,
+                "question": "¿Elaboras correctamente un estado de cuenta de las transacciones financieras de la empresa?",
+                "options": [
+                    {
+                        "description": "Si",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "No.",
+                        "riskScore": 0.8
+                    }
+                ]
             }
         ]
     },
     {
+        "quizName": "Impuestos 2",
         "regulation": "Impuestos",
-        "risk": "Riesgo de Cumplimiento de Impuestos",
-        "quiz": "Impuestos 1",
-        "hasDoc": false,
-        "isMultiple": true,
-        "question": "Que impuestos se estan declarando actualmente en su empresa?",
-        "options": [
+        "description": "Profundiza en el mundo fiscal. Evalúa tus procesos tributarios en esta segunda parte. ¡Adelante!",
+        "questions": [
             {
-                "description": "Impuesto sobre la Renta",
-                "riskScore": -0.2
+                "risk": "Riesgo de Precios de Transferencia",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "Describa su enfoque para administrar los precios de transferencia y garantizar el cumplimiento de las regulaciones relacionadas.",
+                "options": [
+                    {
+                        "description": "Realizamos estudios detallados de precios de transferencia y mantenemos documentación para garantizar el cumplimiento de las regulaciones.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "El cumplimiento de precios de transferencia es un desafío para nosotros.",
+                        "riskScore": 0.6
+                    },
+                    {
+                        "description": "No tenemos un enfoque específico para administrar los precios de transferencia.",
+                        "riskScore": 0.8
+                    }
+                ]
             },
             {
-                "description": "Impuesto sobre las Sociedades.",
-                "riskScore": -0.2
+                "risk": "Riesgo de Cumplimiento de Impuestos",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo manejan el cumplimiento del Impuesto al Valor Agregado (IVA) / Impuesto a los Bienes y Servicios (GST) para su negocio?",
+                "options": [
+                    {
+                        "description": "Contamos con un equipo dedicado que monitorea y garantiza el registro y presentación oportunos del IVA / GST.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "A veces, se pasa por alto el cumplimiento del IVA / GST, lo que puede resultar en posibles multas o responsabilidades.",
+                        "riskScore": 0.5
+                    },
+                    {
+                        "description": "Actualmente, no estamos registrados para el IVA / GST.",
+                        "riskScore": 1
+                    }
+                ]
             },
             {
-                "description": "Impuesto sobre la Nomina.",
-                "riskScore": -0.4
+                "risk": "Riesgo de Planificación Tributaria",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "Describa su proceso para administrar los impuestos de nómina y garantizar el cumplimiento de las regulaciones de impuestos de nómina.",
+                "options": [
+                    {
+                        "description": "Tenemos un sistema de impuestos de nómina bien establecido que calcula y retiene los impuestos de nómina con precisión.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "El cumplimiento de los impuestos de nómina es complejo, y con frecuencia necesitemos asistencia externa para garantizar la precisión.",
+                        "riskScore": 0.4
+                    },
+                    {
+                        "description": "A veces, los impuestos de nómina se manejan manualmente, lo que puede resultar en errores en el cumplimiento.",
+                        "riskScore": 0.8
+                    }
+                ]
             },
             {
-                "description": "Impuesto a la Propiedad.",
-                "riskScore": -0.2
+                "risk": "Riesgo de Planificación Tributaria",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo planifican y administran los pagos de impuestos para optimizar el flujo de efectivo y evitar multas?",
+                "options": [
+                    {
+                        "description": "Tenemos un plan estructurado de pagos de impuestos que se ajusta a nuestro flujo de efectivo y evita multas por pagos tardíos.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Los pagos de impuestos a veces se retrasan, lo que resulta en multas o desafíos en el flujo de efectivo.",
+                        "riskScore": 0.5
+                    },
+                    {
+                        "description": "No tenemos una estrategia específica de pagos de impuestos.",
+                        "riskScore": 0.7
+                    }
+                ]
+            },
+            {
+                "risk": "Riesgo de Cumplimiento de Impuestos",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Mantienes un historial de tus transacciones financieras?",
+                "options": [
+                    {
+                        "description": "Si, y tenemos un sistema en donde guardamos y buscamos eficientemente nuestros registros",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Si, pero nuestros registros no siempre estan ordenados y aveces se pierde tiempo buscando el registro adecuado",
+                        "riskScore": 0.5
+                    },
+                    {
+                        "description": "No, no llevamos un registro como tal de nuestras transacciones",
+                        "riskScore": 1
+                    }
+                ]
             }
         ]
     },
     {
-        "regulation": "Impuestos",
-        "risk": "Riesgo de Planificación Tributaria",
-        "quiz": "Impuestos 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo identifican y aplican deducciones, créditos e incentivos fiscales relevantes para optimizar su posición fiscal?",
-        "options": [
-            {
-                "description": "Realizamos ejercicios regulares de planificación fiscal para identificar deducciones y créditos elegibles, lo que resulta en ahorros fiscales.",
-                "riskScore": 0
-            },
-            {
-                "description": "La identificación de incentivos fiscales no es una prioridad, lo que puede resultar en pérdida de potenciales ahorros fiscales.",
-                "riskScore": 0.6
-            },
-            {
-                "description": "Actualmente no estamos al tanto de ninguna deducción o crédito fiscal específico aplicable a nuestro negocio.",
-                "riskScore": 1
-            }
-        ]
-    },
-    {
-        "regulation": "Impuestos",
-        "risk": "Riesgo Tributario Internacional",
-        "quiz": "Impuestos 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "Describa su proceso para manejar transacciones transfronterizas y cumplir con las regulaciones fiscales internacionales.",
-        "options": [
-            {
-                "description": "Contamos con un equipo dedicado que monitorea y garantiza el cumplimiento de las regulaciones fiscales internacionales para transacciones transfronterizas.",
-                "riskScore": 0
-            },
-            {
-                "description": "Las transacciones transfronterizas se gestionan caso por caso, y es posible que no estemos completamente informados de todas las implicaciones fiscales internacionales.",
-                "riskScore": 0.3
-            },
-            {
-                "description": "Tenemos poca experiencia con transacciones transfronterizas.",
-                "riskScore": 0.9
-            }
-        ]
-    },
-    {
-        "regulation": "Impuestos",
-        "risk": "Riesgo de Cumplimiento de Impuestos",
-        "quiz": "Impuestos 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo administran y mantienen registros y documentación adecuados para respaldar sus declaraciones de impuestos?",
-        "options": [
-            {
-                "description": "Mantenemos registros bien organizados y detallados para respaldar todas las transacciones y declaraciones de impuestos relacionadas.",
-                "riskScore": 0
-            },
-            {
-                "description": "Las prácticas de conservación de registros son inconsistentes y podríamos enfrentar dificultades al proporcionar documentación durante auditorías fiscales.",
-                "riskScore": 0.7
-            },
-            {
-                "description": "No tenemos un proceso estructurado para conservar registros, lo que podría resultar en dificultades durante la presentación de informes de impuestos.",
-                "riskScore": 0.9
-            }
-        ]
-    },
-    {
-        "regulation": "Impuestos",
-        "risk": "Riesgo de Auditoría Tributaria",
-        "quiz": "Impuestos 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo manejan auditorías fiscales y responden a las consultas de las autoridades fiscales?",
-        "options": [
-            {
-                "description": "Tenemos una estrategia de respuesta preparada y mantenemos una comunicación abierta con las autoridades fiscales durante las auditorías.",
-                "riskScore": 0
-            },
-            {
-                "description": "Las auditorías fiscales suelen ser estresantes y pueden resultar en retrasos debido a la falta de preparación.",
-                "riskScore": 0.7
-            },
-            {
-                "description": "Hasta ahora, no hemos enfrentado ninguna auditoría fiscal o consulta por parte de las autoridades fiscales.",
-                "riskScore": 0.8
-            }
-        ]
-    },
-    {
-        "regulation": "Impuestos",
-        "risk": "Riesgo de Cumplimiento de Impuestos",
-        "quiz": "Impuestos 1",
-        "hasDoc": true,
-        "isMultiple": false,
-        "question": "¿Elaboras correctamente un estado de cuenta de las transacciones financieras de la empresa?",
-        "options": [
-            {
-                "description": "Si",
-                "riskScore": 0
-            },
-            {
-                "description": "No.",
-                "riskScore": 0.8
-            }
-        ]
-    },
-    {
-        "regulation": "Impuestos",
-        "risk": "Riesgo de Precios de Transferencia",
-        "quiz": "Impuestos 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "Describa su enfoque para administrar los precios de transferencia y garantizar el cumplimiento de las regulaciones relacionadas.",
-        "options": [
-            {
-                "description": "Realizamos estudios detallados de precios de transferencia y mantenemos documentación para garantizar el cumplimiento de las regulaciones.",
-                "riskScore": 0
-            },
-            {
-                "description": "El cumplimiento de precios de transferencia es un desafío para nosotros.",
-                "riskScore": 0.6
-            },
-            {
-                "description": "No tenemos un enfoque específico para administrar los precios de transferencia.",
-                "riskScore": 0.8
-            }
-        ]
-    },
-    {
-        "regulation": "Impuestos",
-        "risk": "Riesgo de Cumplimiento de Impuestos",
-        "quiz": "Impuestos 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo manejan el cumplimiento del Impuesto al Valor Agregado (IVA) / Impuesto a los Bienes y Servicios (GST) para su negocio?",
-        "options": [
-            {
-                "description": "Contamos con un equipo dedicado que monitorea y garantiza el registro y presentación oportunos del IVA / GST.",
-                "riskScore": 0
-            },
-            {
-                "description": "A veces, se pasa por alto el cumplimiento del IVA / GST, lo que puede resultar en posibles multas o responsabilidades.",
-                "riskScore": 0.5
-            },
-            {
-                "description": "Actualmente, no estamos registrados para el IVA / GST.",
-                "riskScore": 1
-            }
-        ]
-    },
-    {
-        "regulation": "Impuestos",
-        "risk": "Riesgo de Planificación Tributaria",
-        "quiz": "Impuestos 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "Describa su proceso para administrar los impuestos de nómina y garantizar el cumplimiento de las regulaciones de impuestos de nómina.",
-        "options": [
-            {
-                "description": "Tenemos un sistema de impuestos de nómina bien establecido que calcula y retiene los impuestos de nómina con precisión.",
-                "riskScore": 0
-            },
-            {
-                "description": "El cumplimiento de los impuestos de nómina es complejo, y con frecuencia necesitemos asistencia externa para garantizar la precisión.",
-                "riskScore": 0.4
-            },
-            {
-                "description": "A veces, los impuestos de nómina se manejan manualmente, lo que puede resultar en errores en el cumplimiento.",
-                "riskScore": 0.8
-            }
-        ]
-    },
-    {
-        "regulation": "Impuestos",
-        "risk": "Riesgo de Planificación Tributaria",
-        "quiz": "Impuestos 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo planifican y administran los pagos de impuestos para optimizar el flujo de efectivo y evitar multas?",
-        "options": [
-            {
-                "description": "Tenemos un plan estructurado de pagos de impuestos que se ajusta a nuestro flujo de efectivo y evita multas por pagos tardíos.",
-                "riskScore": 0
-            },
-            {
-                "description": "Los pagos de impuestos a veces se retrasan, lo que resulta en multas o desafíos en el flujo de efectivo.",
-                "riskScore": 0.5
-            },
-            {
-                "description": "No tenemos una estrategia específica de pagos de impuestos.",
-                "riskScore": 0.7
-            }
-        ]
-    },
-    {
-        "regulation": "Impuestos",
-        "risk": "Riesgo de Cumplimiento de Impuestos",
-        "quiz": "Impuestos 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Mantienes un historial de tus transacciones financieras?",
-        "options": [
-            {
-                "description": "Si, y tenemos un sistema en donde guardamos y buscamos eficientemente nuestros registros",
-                "riskScore": 0
-            },
-            {
-                "description": "Si, pero nuestros registros no siempre estan ordenados y aveces se pierde tiempo buscando el registro adecuado",
-                "riskScore": 0.5
-            },
-            {
-                "description": "No, no llevamos un registro como tal de nuestras transacciones",
-                "riskScore": 1
-            }
-        ]
-    },
-    {
+        "quizName": "Seguridad 1",
         "regulation": "Seguridad",
-        "risk": "Riesgo de Vulnerabilidades de Software",
-        "quiz": "Seguridad 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo protegen los datos e información sensible de accesos no autorizados y violaciones de seguridad?",
-        "options": [
+        "description": "Descubre tu nivel de seguridad informática. Evalúa tus conocimientos sobre ciberseguridad y protección de datos. ¡Mantén tus sistemas protegidos!",
+        "questions": [
             {
-                "description": "Implementamos controles de acceso sólidos, cifrado y copias de seguridad regulares para proteger la información sensible.",
-                "riskScore": 0
+                "risk": "Riesgo de Vulnerabilidades de Software",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo protegen los datos e información sensible de accesos no autorizados y violaciones de seguridad?",
+                "options": [
+                    {
+                        "description": "Implementamos controles de acceso sólidos, cifrado y copias de seguridad regulares para proteger la información sensible.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Utilizamos firewalls y software antivirus para proteger nuestros sistemas, pero el cifrado de datos aún no está completamente implementado.",
+                        "riskScore": 0.5
+                    },
+                    {
+                        "description": "Tenemos medidas de seguridad mínimas, lo que deja nuestros datos sensibles vulnerables a posibles violaciones.",
+                        "riskScore": 0.8
+                    }
+                ]
             },
             {
-                "description": "Utilizamos firewalls y software antivirus para proteger nuestros sistemas, pero el cifrado de datos aún no está completamente implementado.",
-                "riskScore": 0.5
+                "risk": "Riesgo de Fugas de Información",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo manejan y responden a incidentes de seguridad, como violaciones de datos o ataques cibernéticos?",
+                "options": [
+                    {
+                        "description": "Tenemos un plan de respuesta a incidentes bien documentado que incluye pasos para identificar, contener, erradicar y recuperarse de un incidente de seguridad.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Los incidentes de seguridad se manejan de manera ad hoc, y no tenemos un plan formal para la respuesta y recuperación.",
+                        "riskScore": 0.6
+                    },
+                    {
+                        "description": "No creemos que sea necesario, hasta ahora no hemos recibido ningun incidente.",
+                        "riskScore": 1
+                    }
+                ]
             },
             {
-                "description": "Tenemos medidas de seguridad mínimas, lo que deja nuestros datos sensibles vulnerables a posibles violaciones.",
-                "riskScore": 0.8
+                "risk": "Riesgo de Falta de Conciencia de Seguridad",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo educan y capacitan a sus empleados para reconocer y evitar amenazas de ciberseguridad, como correos electrónicos de phishing o intentos de ingeniería social?",
+                "options": [
+                    {
+                        "description": "Realizamos capacitaciones regulares de concientización sobre ciberseguridad para todos los empleados y simulamos ataques de phishing para mejorar su conocimiento.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "La capacitación se proporciona solo a ciertos departamentos, dejando a algunos empleados sin conciencia de las posibles amenazas de ciberseguridad.",
+                        "riskScore": 0.6
+                    },
+                    {
+                        "description": "La capacitación en ciberseguridad no es una prioridad para nosotros, y asumimos que los empleados ejercerán precaución por sí mismos.",
+                        "riskScore": 0.8
+                    }
+                ]
+            },
+            {
+                "risk": "Riesgo de Vulnerabilidades de Software",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "Describa su proceso para actualizar y parchear regularmente el software y los sistemas para abordar las vulnerabilidades de seguridad conocidas.",
+                "options": [
+                    {
+                        "description": "Tenemos un sistema automatizado de gestión de parches que actualiza regularmente el software y los sistemas para abordar rápidamente las vulnerabilidades de seguridad.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "La aplicación de parches se retrasa debido a limitaciones de recurso y tiempo, lo que deja a nuestros sistemas expuestos a vulnerabilidades conocidas durante períodos prolongados.",
+                        "riskScore": 0.6
+                    },
+                    {
+                        "description": "No tenemos un proceso formal para las actualizaciones de software y parches.",
+                        "riskScore": 0.8
+                    }
+                ]
             }
         ]
     },
     {
+        "quizName": "Seguridad 2",
         "regulation": "Seguridad",
-        "risk": "Riesgo de Fugas de Información",
-        "quiz": "Seguridad 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo manejan y responden a incidentes de seguridad, como violaciones de datos o ataques cibernéticos?",
-        "options": [
+        "description": "Sumérgete en la seguridad digital de tu empresa. Evalúa tus habilidades en ciberseguridad y medidas para enfrentar amenazas en esta segunda parte. ¡Fortalece tu defensa en línea!",
+        "questions": [
             {
-                "description": "Tenemos un plan de respuesta a incidentes bien documentado que incluye pasos para identificar, contener, erradicar y recuperarse de un incidente de seguridad.",
-                "riskScore": 0
+                "risk": "Riesgo de Ataques a la Cadena de Suministro",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo gestionan y aseguran las relaciones con proveedores externos para prevenir ataques en la cadena de suministro?",
+                "options": [
+                    {
+                        "description": "Realizamos evaluaciones exhaustivas de seguridad de todos los proveedores externos y les exigimos cumplir con estrictos estándares de seguridad.",
+                        "riskScore": 0.1
+                    },
+                    {
+                        "description": "Las evaluaciones de seguridad de los proveedores se realizan caso por caso, y no tenemos un enfoque estandarizado.",
+                        "riskScore": 0.5
+                    },
+                    {
+                        "description": "No tenemos medidas específicas de seguridad para manejar a los proveedores externos.",
+                        "riskScore": 1
+                    }
+                ]
             },
             {
-                "description": "Los incidentes de seguridad se manejan de manera ad hoc, y no tenemos un plan formal para la respuesta y recuperación.",
-                "riskScore": 0.6
+                "risk": "Riesgo de Violaciones de Seguridad",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "Describa sus medidas de seguridad de red para proteger contra accesos no autorizados y extracción de datos.",
+                "options": [
+                    {
+                        "description": "Utilizamos una combinación de firewalls, sistemas de detección de intrusiones y segmentación de red para proteger nuestra red de posibles amenazas.",
+                        "riskScore": 0.2
+                    },
+                    {
+                        "description": "La seguridad de la red se limita a firewalls básicos, y no tenemos mecanismos sólidos de detección de intrusiones.",
+                        "riskScore": 0.6
+                    },
+                    {
+                        "description": "La seguridad de la red no es una preocupación importante para nosotros en este momento.",
+                        "riskScore": 0.9
+                    }
+                ]
             },
             {
-                "description": "No creemos que sea necesario, hasta ahora no hemos recibido ningun incidente.",
-                "riskScore": 1
+                "risk": "Riesgo de Falta de Conciencia de Seguridad",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo garantizan que sus empleados cumplan con prácticas sólidas de contraseñas y utilicen métodos de autenticación seguros?",
+                "options": [
+                    {
+                        "description": "Aplicamos requisitos de complejidad de contraseñas y fomentamos el uso de autenticación de múltiples factores para todos los empleados.",
+                        "riskScore": 0.2
+                    },
+                    {
+                        "description": "Las políticas de contraseñas están vigentes, pero su cumplimiento es laxo, lo que conduce a prácticas de autenticación más débiles.",
+                        "riskScore": 0.7
+                    },
+                    {
+                        "description": "No tenemos políticas específicas de contraseñas ni prácticas de autenticación.",
+                        "riskScore": 1
+                    }
+                ]
+            },
+            {
+                "risk": "Riesgo de Violaciones de Seguridad",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo protegen a su organización contra amenazas internas y accesos internos no autorizados a información sensible?",
+                "options": [
+                    {
+                        "description": "Implementamos controles de acceso basados en roles, monitoreamos las actividades de los usuarios y realizamos auditorías periódicas para identificar y prevenir amenazas internas.",
+                        "riskScore": 0.2
+                    },
+                    {
+                        "description": "Las amenazas internas no son una preocupación principal para nosotros, y no tenemos medidas dedicadas para monitorear el acceso interno.",
+                        "riskScore": 0.6
+                    },
+                    {
+                        "description": "Confiamos en nuestros empleados y no monitoreamos activamente el acceso interno.",
+                        "riskScore": 1
+                    }
+                ]
+            },
+            {
+                "risk": "Riesgo de Violaciones de Seguridad",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "Describa sus estrategias de copia de seguridad de datos y recuperación ante desastres para garantizar la continuidad del negocio en caso de un incidente cibernético.",
+                "options": [
+                    {
+                        "description": "Realizamos copias de seguridad periódicas de datos críticos, almacenamos las copias de seguridad de forma segura y tenemos un plan integral de recuperación ante desastres.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Las copias de seguridad de datos son esporádicas, y no contamos con una estrategia integral de recuperación ante desastres.",
+                        "riskScore": 0.7
+                    },
+                    {
+                        "description": "Aún no hemos implementado copias de seguridad de datos ni planificación de recuperación ante desastres.",
+                        "riskScore": 1
+                    }
+                ]
             }
         ]
     },
     {
-        "regulation": "Seguridad",
-        "risk": "Riesgo de Falta de Conciencia de Seguridad",
-        "quiz": "Seguridad 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo educan y capacitan a sus empleados para reconocer y evitar amenazas de ciberseguridad, como correos electrónicos de phishing o intentos de ingeniería social?",
-        "options": [
-            {
-                "description": "Realizamos capacitaciones regulares de concientización sobre ciberseguridad para todos los empleados y simulamos ataques de phishing para mejorar su conocimiento.",
-                "riskScore": 0
-            },
-            {
-                "description": "La capacitación se proporciona solo a ciertos departamentos, dejando a algunos empleados sin conciencia de las posibles amenazas de ciberseguridad.",
-                "riskScore": 0.6
-            },
-            {
-                "description": "La capacitación en ciberseguridad no es una prioridad para nosotros, y asumimos que los empleados ejercerán precaución por sí mismos.",
-                "riskScore": 0.8
-            }
-        ]
-    },
-    {
-        "regulation": "Seguridad",
-        "risk": "Riesgo de Vulnerabilidades de Software",
-        "quiz": "Seguridad 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "Describa su proceso para actualizar y parchear regularmente el software y los sistemas para abordar las vulnerabilidades de seguridad conocidas.",
-        "options": [
-            {
-                "description": "Tenemos un sistema automatizado de gestión de parches que actualiza regularmente el software y los sistemas para abordar rápidamente las vulnerabilidades de seguridad.",
-                "riskScore": 0
-            },
-            {
-                "description": "La aplicación de parches se retrasa debido a limitaciones de recurso y tiempo, lo que deja a nuestros sistemas expuestos a vulnerabilidades conocidas durante períodos prolongados.",
-                "riskScore": 0.6
-            },
-            {
-                "description": "No tenemos un proceso formal para las actualizaciones de software y parches.",
-                "riskScore": 0.8
-            }
-        ]
-    },
-    {
-        "regulation": "Seguridad",
-        "risk": "Riesgo de Ataques a la Cadena de Suministro",
-        "quiz": "Seguridad 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo gestionan y aseguran las relaciones con proveedores externos para prevenir ataques en la cadena de suministro?",
-        "options": [
-            {
-                "description": "Realizamos evaluaciones exhaustivas de seguridad de todos los proveedores externos y les exigimos cumplir con estrictos estándares de seguridad.",
-                "riskScore": 0.1
-            },
-            {
-                "description": "Las evaluaciones de seguridad de los proveedores se realizan caso por caso, y no tenemos un enfoque estandarizado.",
-                "riskScore": 0.5
-            },
-            {
-                "description": "No tenemos medidas específicas de seguridad para manejar a los proveedores externos.",
-                "riskScore": 1
-            }
-        ]
-    },
-    {
-        "regulation": "Seguridad",
-        "risk": "Riesgo de Violaciones de Seguridad",
-        "quiz": "Seguridad 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "Describa sus medidas de seguridad de red para proteger contra accesos no autorizados y extracción de datos.",
-        "options": [
-            {
-                "description": "Utilizamos una combinación de firewalls, sistemas de detección de intrusiones y segmentación de red para proteger nuestra red de posibles amenazas.",
-                "riskScore": 0.2
-            },
-            {
-                "description": "La seguridad de la red se limita a firewalls básicos, y no tenemos mecanismos sólidos de detección de intrusiones.",
-                "riskScore": 0.6
-            },
-            {
-                "description": "La seguridad de la red no es una preocupación importante para nosotros en este momento.",
-                "riskScore": 0.9
-            }
-        ]
-    },
-    {
-        "regulation": "Seguridad",
-        "risk": "Riesgo de Falta de Conciencia de Seguridad",
-        "quiz": "Seguridad 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo garantizan que sus empleados cumplan con prácticas sólidas de contraseñas y utilicen métodos de autenticación seguros?",
-        "options": [
-            {
-                "description": "Aplicamos requisitos de complejidad de contraseñas y fomentamos el uso de autenticación de múltiples factores para todos los empleados.",
-                "riskScore": 0.2
-            },
-            {
-                "description": "Las políticas de contraseñas están vigentes, pero su cumplimiento es laxo, lo que conduce a prácticas de autenticación más débiles.",
-                "riskScore": 0.7
-            },
-            {
-                "description": "No tenemos políticas específicas de contraseñas ni prácticas de autenticación.",
-                "riskScore": 1
-            }
-        ]
-    },
-    {
-        "regulation": "Seguridad",
-        "risk": "Riesgo de Violaciones de Seguridad",
-        "quiz": "Seguridad 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo protegen a su organización contra amenazas internas y accesos internos no autorizados a información sensible?",
-        "options": [
-            {
-                "description": "Implementamos controles de acceso basados en roles, monitoreamos las actividades de los usuarios y realizamos auditorías periódicas para identificar y prevenir amenazas internas.",
-                "riskScore": 0.2
-            },
-            {
-                "description": "Las amenazas internas no son una preocupación principal para nosotros, y no tenemos medidas dedicadas para monitorear el acceso interno.",
-                "riskScore": 0.6
-            },
-            {
-                "description": "Confiamos en nuestros empleados y no monitoreamos activamente el acceso interno.",
-                "riskScore": 1
-            }
-        ]
-    },
-    {
-        "regulation": "Seguridad",
-        "risk": "Riesgo de Violaciones de Seguridad",
-        "quiz": "Seguridad 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "Describa sus estrategias de copia de seguridad de datos y recuperación ante desastres para garantizar la continuidad del negocio en caso de un incidente cibernético.",
-        "options": [
-            {
-                "description": "Realizamos copias de seguridad periódicas de datos críticos, almacenamos las copias de seguridad de forma segura y tenemos un plan integral de recuperación ante desastres.",
-                "riskScore": 0
-            },
-            {
-                "description": "Las copias de seguridad de datos son esporádicas, y no contamos con una estrategia integral de recuperación ante desastres.",
-                "riskScore": 0.7
-            },
-            {
-                "description": "Aún no hemos implementado copias de seguridad de datos ni planificación de recuperación ante desastres.",
-                "riskScore": 1
-            }
-        ]
-    },
-    {
+        "quizName": "AML 1",
         "regulation": "AML",
-        "risk": "Riesgo de Diligencia Debida Inadecuada",
-        "quiz": "AML 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo verifica la identidad de sus clientes durante la incorporación y las transacciones continuas?",
-        "options": [
+        "description": "Descubre tus conocimientos sobre Prevención de Lavado de Dinero (AML). Evalúa cómo manejas los riesgos y el cumplimiento. ¡Mantén tu negocio seguro y ético!",
+        "questions": [
             {
-                "description": "Utilizamos verificación de identidad electrónica y verificación de documentos emitidos por el gobierno para autenticar a nuestros clientes.",
-                "riskScore": 0
+                "risk": "Riesgo de Diligencia Debida Inadecuada",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo verifica la identidad de sus clientes durante la incorporación y las transacciones continuas?",
+                "options": [
+                    {
+                        "description": "Utilizamos verificación de identidad electrónica y verificación de documentos emitidos por el gobierno para autenticar a nuestros clientes.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Nuestro equipo de cumplimiento verifica manualmente la identidad de los clientes cruzando información y realizando verificaciones de antecedentes.",
+                        "riskScore": 0.2
+                    },
+                    {
+                        "description": "Actualmente no tenemos un proceso estandarizado para verificar la identidad de los clientes.",
+                        "riskScore": 0.8
+                    }
+                ]
             },
             {
-                "description": "Nuestro equipo de cumplimiento verifica manualmente la identidad de los clientes cruzando información y realizando verificaciones de antecedentes.",
-                "riskScore": 0.2
+                "risk": "Riesgo de Diligencia Debida Inadecuada",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo evalúa y asigna calificaciones de riesgo a sus clientes en función de factores de AML?",
+                "options": [
+                    {
+                        "description": "Tenemos un enfoque basado en el riesgo que considera factores como la ubicación del cliente, la naturaleza del negocio y el volumen de transacciones para asignar calificaciones de riesgo.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Nuestra evaluación de riesgos se basa principalmente en la intuición y experiencias pasadas con los clientes.",
+                        "riskScore": 0.6
+                    },
+                    {
+                        "description": "Actualmente no evaluamos el riesgo ni asignamos calificaciones de riesgo a nuestros clientes.",
+                        "riskScore": 0.9
+                    }
+                ]
             },
             {
-                "description": "Actualmente no tenemos un proceso estandarizado para verificar la identidad de los clientes.",
-                "riskScore": 0.8
+                "risk": "Riesgo de Diligencia Debida Inadecuada",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "Describa su proceso para realizar una debida diligencia reforzada (EDD) en clientes y transacciones de alto riesgo.",
+                "options": [
+                    {
+                        "description": "Realizamos investigaciones exhaustivas sobre clientes de alto riesgo, incluido el análisis de propiedad beneficiaria y la fuente de fondos.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "La debida diligencia reforzada se realiza solo en casos excepcionales, y nos basamos en informes de terceros para obtener información.",
+                        "riskScore": 0.7
+                    },
+                    {
+                        "description": "Actualmente no tenemos un proceso establecido para realizar una debida diligencia reforzada en clientes de alto riesgo.",
+                        "riskScore": 0.9
+                    }
+                ]
+            },
+            {
+                "risk": "Riesgo de Cumplimiento AML",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo manejan el reporte de transacciones sospechosas a las autoridades pertinentes?",
+                "options": [
+                    {
+                        "description": "Contamos con un proceso bien definido para reportar transacciones sospechosas a la unidad de inteligencia financiera correspondiente de manera oportuna.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "El reporte de transacciones sospechosas se realiza de manera ad hoc, y no tenemos un sistema formal implementado.",
+                        "riskScore": 0.5
+                    },
+                    {
+                        "description": "Nunca hemos encontrado transacciones sospechosas para reportar.",
+                        "riskScore": 1
+                    }
+                ]
             }
         ]
     },
     {
+        "quizName": "AML 2",
         "regulation": "AML",
-        "risk": "Riesgo de Diligencia Debida Inadecuada",
-        "quiz": "AML 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo evalúa y asigna calificaciones de riesgo a sus clientes en función de factores de AML?",
-        "options": [
+        "description": "Profundiza en Prevención de Lavado de Dinero (AML). Evalúa tus habilidades en riesgos y cumplimiento. ¡Sé un experto en seguridad financiera!",
+        "questions": [
             {
-                "description": "Tenemos un enfoque basado en el riesgo que considera factores como la ubicación del cliente, la naturaleza del negocio y el volumen de transacciones para asignar calificaciones de riesgo.",
-                "riskScore": 0
+                "risk": "Riesgo de Capacitación Insuficiente",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "Describa su programa de capacitación sobre AML para empleados. ¿Cómo aseguran que su personal esté al tanto de sus responsabilidades en materia de AML?",
+                "options": [
+                    {
+                        "description": "Brindamos sesiones de capacitación periódicas sobre AML a todos los empleados y realizamos evaluaciones para medir su comprensión.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "La capacitación se limita a los equipos de cumplimiento y gestión de riesgos; otros empleados pueden no estar completamente al tanto de las obligaciones de AML.",
+                        "riskScore": 0.4
+                    },
+                    {
+                        "description": "Actualmente no tenemos un programa de capacitación establecido para la conciencia sobre AML.",
+                        "riskScore": 0.8
+                    }
+                ]
             },
             {
-                "description": "Nuestra evaluación de riesgos se basa principalmente en la intuición y experiencias pasadas con los clientes.",
-                "riskScore": 0.6
+                "risk": "Riesgo de Transacciones Sospechosas No Detectadas",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo garantizan la integridad y seguridad de las transacciones financieras dentro de su organización?",
+                "options": [
+                    {
+                        "description": "Mantenemos estrictos controles internos y realizamos auditorías regulares para asegurar la integridad y seguridad de las transacciones financieras.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Dependemos en gran medida de la confianza en nuestros empleados y procesos manuales para proteger las transacciones financieras.",
+                        "riskScore": 0.6
+                    },
+                    {
+                        "description": "No estamos seguros de si nuestras transacciones financieras están completamente protegidas y aseguradas.",
+                        "riskScore": 0.8
+                    }
+                ]
             },
             {
-                "description": "Actualmente no evaluamos el riesgo ni asignamos calificaciones de riesgo a nuestros clientes.",
-                "riskScore": 0.9
-            }
-        ]
-    },
-    {
-        "regulation": "AML",
-        "risk": "Riesgo de Diligencia Debida Inadecuada",
-        "quiz": "AML 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "Describa su proceso para realizar una debida diligencia reforzada (EDD) en clientes y transacciones de alto riesgo.",
-        "options": [
-            {
-                "description": "Realizamos investigaciones exhaustivas sobre clientes de alto riesgo, incluido el análisis de propiedad beneficiaria y la fuente de fondos.",
-                "riskScore": 0
+                "risk": "Riesgo de Colaboración con Clientes de Alto Riesgo",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo supervisan y controlan las transacciones de alto valor o inusuales dentro de su organización?",
+                "options": [
+                    {
+                        "description": "Implementamos sistemas automatizados de monitoreo y alertas para supervisar las transacciones de alto valor o inusuales y realizar revisiones periódicas.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "Nuestro personal realiza verificaciones manuales de transacciones de alto valor o inusuales, pero puede haber margen para errores.",
+                        "riskScore": 0.7
+                    },
+                    {
+                        "description": "No tenemos un proceso formal para supervisar o controlar transacciones de alto valor o inusuales.",
+                        "riskScore": 0.9
+                    }
+                ]
             },
             {
-                "description": "La debida diligencia reforzada se realiza solo en casos excepcionales, y nos basamos en informes de terceros para obtener información.",
-                "riskScore": 0.7
-            },
-            {
-                "description": "Actualmente no tenemos un proceso establecido para realizar una debida diligencia reforzada en clientes de alto riesgo.",
-                "riskScore": 0.9
-            }
-        ]
-    },
-    {
-        "regulation": "AML",
-        "risk": "Riesgo de Cumplimiento AML",
-        "quiz": "AML 1",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo manejan el reporte de transacciones sospechosas a las autoridades pertinentes?",
-        "options": [
-            {
-                "description": "Contamos con un proceso bien definido para reportar transacciones sospechosas a la unidad de inteligencia financiera correspondiente de manera oportuna.",
-                "riskScore": 0
-            },
-            {
-                "description": "El reporte de transacciones sospechosas se realiza de manera ad hoc, y no tenemos un sistema formal implementado.",
-                "riskScore": 0.5
-            },
-            {
-                "description": "Nunca hemos encontrado transacciones sospechosas para reportar.",
-                "riskScore": 1
-            }
-        ]
-    },
-    {
-        "regulation": "AML",
-        "risk": "Riesgo de Capacitación Insuficiente",
-        "quiz": "AML 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "Describa su programa de capacitación sobre AML para empleados. ¿Cómo aseguran que su personal esté al tanto de sus responsabilidades en materia de AML?",
-        "options": [
-            {
-                "description": "Brindamos sesiones de capacitación periódicas sobre AML a todos los empleados y realizamos evaluaciones para medir su comprensión.",
-                "riskScore": 0
-            },
-            {
-                "description": "La capacitación se limita a los equipos de cumplimiento y gestión de riesgos; otros empleados pueden no estar completamente al tanto de las obligaciones de AML.",
-                "riskScore": 0.4
-            },
-            {
-                "description": "Actualmente no tenemos un programa de capacitación establecido para la conciencia sobre AML.",
-                "riskScore": 0.8
-            }
-        ]
-    },
-    {
-        "regulation": "AML",
-        "risk": "Riesgo de Transacciones Sospechosas No Detectadas",
-        "quiz": "AML 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo garantizan la integridad y seguridad de las transacciones financieras dentro de su organización?",
-        "options": [
-            {
-                "description": "Mantenemos estrictos controles internos y realizamos auditorías regulares para asegurar la integridad y seguridad de las transacciones financieras.",
-                "riskScore": 0
-            },
-            {
-                "description": "Dependemos en gran medida de la confianza en nuestros empleados y procesos manuales para proteger las transacciones financieras.",
-                "riskScore": 0.6
-            },
-            {
-                "description": "No estamos seguros de si nuestras transacciones financieras están completamente protegidas y aseguradas.",
-                "riskScore": 0.8
-            }
-        ]
-    },
-    {
-        "regulation": "AML",
-        "risk": "Riesgo de Colaboración con Clientes de Alto Riesgo",
-        "quiz": "AML 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo supervisan y controlan las transacciones de alto valor o inusuales dentro de su organización?",
-        "options": [
-            {
-                "description": "Implementamos sistemas automatizados de monitoreo y alertas para supervisar las transacciones de alto valor o inusuales y realizar revisiones periódicas.",
-                "riskScore": 0
-            },
-            {
-                "description": "Nuestro personal realiza verificaciones manuales de transacciones de alto valor o inusuales, pero puede haber margen para errores.",
-                "riskScore": 0.7
-            },
-            {
-                "description": "No tenemos un proceso formal para supervisar o controlar transacciones de alto valor o inusuales.",
-                "riskScore": 0.9
-            }
-        ]
-    },
-    {
-        "regulation": "AML",
-        "risk": "Riesgo de Cumplimiento AML",
-        "quiz": "AML 2",
-        "hasDoc": false,
-        "isMultiple": false,
-        "question": "¿Cómo aseguran la transparencia en las operaciones financieras y la divulgación de información relevante a las autoridades competentes?",
-        "options": [
-            {
-                "description": "Nuestras operaciones financieras están completamente documentadas y compartimos información relevante con las autoridades competentes de manera oportuna.",
-                "riskScore": 0
-            },
-            {
-                "description": "A veces podemos enfrentar retrasos o inexactitudes en la divulgación de información financiera a las autoridades competentes.",
-                "riskScore": 0.6
-            },
-            {
-                "description": "No estamos seguros de si nuestras operaciones financieras son completamente transparentes y si divulgamos información relevante de manera adecuada.",
-                "riskScore": 0.8
+                "risk": "Riesgo de Cumplimiento AML",
+                "hasDoc": false,
+                "isMultiple": false,
+                "question": "¿Cómo aseguran la transparencia en las operaciones financieras y la divulgación de información relevante a las autoridades competentes?",
+                "options": [
+                    {
+                        "description": "Nuestras operaciones financieras están completamente documentadas y compartimos información relevante con las autoridades competentes de manera oportuna.",
+                        "riskScore": 0
+                    },
+                    {
+                        "description": "A veces podemos enfrentar retrasos o inexactitudes en la divulgación de información financiera a las autoridades competentes.",
+                        "riskScore": 0.6
+                    },
+                    {
+                        "description": "No estamos seguros de si nuestras operaciones financieras son completamente transparentes y si divulgamos información relevante de manera adecuada.",
+                        "riskScore": 0.8
+                    }
+                ]
             }
         ]
     }
-    
 ]

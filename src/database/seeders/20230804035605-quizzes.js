@@ -10,7 +10,7 @@ module.exports = {
     async up (queryInterface, Sequelize) {
         const regulationMap = {}
         const riskMap = {}
-        const quizMap = {}
+        const quizzes = []
         const questions = []
         const selections = []
 
@@ -20,42 +20,46 @@ module.exports = {
             regulationMap[regulation.name] = regulation.id
         }
         //Fill arrays with the data to be inserted
-        for(const question of data){
-            const questionUuid = uuid()
-            if(!riskMap[question.risk]) riskMap[question.risk] = {
-                id: uuid(),
-                regulationId: regulationMap[question.regulation]
-            }
-            if(!quizMap[question.quiz]) quizMap[question.quiz] = uuid()
-            questions.push({
-                id: questionUuid,
-                riskId: riskMap[question.risk].id,
-                quizId: quizMap[question.quiz],
-                description: question.question,
-                isMultiple: question.isMultiple,
-                hasDoc: question.hasDoc,
+        for(const quiz of data){
+            const quizUuid = uuid()
+            quizzes.push({
+                id: quizUuid,
+                regulationId: regulationMap[quiz.regulation],
+                name: quiz.quizName,
+                description: quiz.description,
                 createdAt: now,
                 updatedAt: now
             })
-            for(const option of question.options){
-                selections.push({
+            for(const question of quiz.questions){
+                const questionUuid = uuid()
+                if(!riskMap[question.risk]) riskMap[question.risk] = {
                     id: uuid(),
-                    questionId: questionUuid,
-                    description: option.description,
-                    riskScore: option.riskScore,
+                    regulationId: regulationMap[quiz.regulation]
+                }
+                questions.push({
+                    id: questionUuid,
+                    riskId: riskMap[question.risk].id,
+                    quizId: quizUuid,
+                    description: question.question,
+                    isMultiple: question.isMultiple,
+                    hasDoc: question.hasDoc,
                     createdAt: now,
                     updatedAt: now
                 })
+                for(const option of question.options){
+                    selections.push({
+                        id: uuid(),
+                        questionId: questionUuid,
+                        description: option.description,
+                        riskScore: option.riskScore,
+                        createdAt: now,
+                        updatedAt: now
+                    })
+                }
+                
             }
-            
         }
         //BulkInserts
-        await queryInterface.bulkInsert('quizzes', Object.keys(quizMap).map(key => ({
-            id: quizMap[key],
-            name: key,
-            createdAt: now,
-            updatedAt: now
-        })))
         await queryInterface.bulkInsert('risks', Object.keys(riskMap).map(key => ({
             id: riskMap[key].id,
             regulationId: riskMap[key].regulationId,
@@ -63,6 +67,7 @@ module.exports = {
             createdAt: now,
             updatedAt: now
         })))
+        await queryInterface.bulkInsert('quizzes', quizzes)
         await queryInterface.bulkInsert('questions', questions)
         await queryInterface.bulkInsert('selections', selections)
     },

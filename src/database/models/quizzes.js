@@ -10,7 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
         static associate(models) {
-            // define association here
+            Quizzes.belongsTo(models.Regulations, {
+                foreignKey: 'regulationId'
+            })
+            Quizzes.hasMany(models.Questions, {
+                foreignKey: 'quizId'
+            })
         }
     }
     Quizzes.init({
@@ -19,10 +24,22 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.UUIDV4
         },
+        regulationId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'regulations',
+                key: 'id'
+            }
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false,
         }
     }, {
         sequelize,

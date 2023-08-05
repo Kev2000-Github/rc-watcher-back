@@ -8,10 +8,22 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.STRING
             },
+            regulationId: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                references: {
+                    model: 'regulations',
+                    key: 'id'
+                }
+            },
             name: {
                 type: Sequelize.STRING,
                 allowNull: false,
                 unique: true
+            },
+            description: {
+                type: Sequelize.STRING,
+                allowNull: false,
             },
             createdAt: {
                 type: Sequelize.DATE,

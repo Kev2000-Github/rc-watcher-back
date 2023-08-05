@@ -8,6 +8,7 @@ router.use('/users', require('./users/users.route').usersRouter)
 router.use('/roles', require('./roles/roles.route').rolesRouter)
 router.use('/companies', require('./companies/companies.route').companiesRouter)
 router.use('/countries', require('./countries/countries.route').countriesRouter)
+router.use('/quizzes', require('./quizzes/quizzes.route').quizzesRouter)
 //SEPARATOR --DON'T TOUCH THIS--
 module.exports = {
     router
