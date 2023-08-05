@@ -6,7 +6,7 @@ const controller = require('./quizzes.controller')
 const {validateRequestSchema, validateResponseSchema, pagination} = require('../../middlewares')
 
 router.get(
-    '/form/:id', 
+    '/form/:quizId', 
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'quizzes.in-get-quizzes-form-id.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'quizzes.out-get-quizzes-form-id.schema.js'))),
     controller.get_quizzes_form_id
