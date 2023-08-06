@@ -62,3 +62,35 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
         res.json({data: {created: responseData.length}})    
     })
 })
+
+module.exports.put_quizzes_form_quizId = controllerWrapper(async (req, res) => {
+    const {quizId} = req.params
+    const {responses} = req.body
+    const companyId = req.user.Company.id
+    await validateQuizRequest(quizId, responses)
+    return sequelize.transaction(async transaction => {
+        const responseFormatted = responses.map(response => ({
+            companyId,
+            questionId: response.questionId,
+            selectionId: response.selectionId
+        }))
+        const documentFormatted = responses.reduce((prev, curr) => {
+            if(curr.document){
+                const data = {
+                    id: uuid(),
+                    companyId,
+                    questionId: curr.questionId,
+                    file: curr.document,
+                    type: DOCUMENT_TYPE.JPG
+                }
+                return [...prev, data]
+            }
+            return prev
+        }, [])
+        const questionIds = responses.map(resp => resp.questionId)
+        await Responses.destroy({where: {companyId, questionId: questionIds}})
+        const responseData = await Responses.bulkCreate(responseFormatted, {transaction})
+        await Documents.bulkCreate(documentFormatted, {transaction})
+        res.json({data: {created: responseData.length}})    
+    })
+})

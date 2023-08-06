@@ -34,6 +34,15 @@ router.post(
     checkRole({blacklist: [ROLES.OPERATOR]}),
     controller.post_quizzes_form_quizId
 )
+
+router.put(
+    '/form/:quizId', 
+    validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'quizzes.in-put-quizzes-form-quiz-id.schema.js'))),
+    validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'quizzes.out-put-quizzes-form-quiz-id.schema.js'))),
+    authentication,
+    checkRole({blacklist: [ROLES.OPERATOR]}),
+    controller.put_quizzes_form_quizId
+)
 //ROUTES ABOVE --DON'T TOUCH THIS--
 module.exports = {
     quizzesRouter: router
