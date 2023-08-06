@@ -48,11 +48,36 @@ const errorFormatter = errors => {
     }, '').trim().replace(/\n/g, '')
 }
 
+const findRepeatedItem = arr => {
+    const map = {}
+    const repeated = []
+    for(const item of arr){
+        if(map[item]){
+            map[item] += 1
+            repeated.push(item)
+        }
+        else{
+            map[item] = 1
+        }
+    }
+    return repeated
+}
+
+const arrayToMap = (arr, placeholder) => {
+    const map = {}
+    for(const item of arr) {
+        map[item] = {...placeholder}
+    }
+    return map
+}
+
 module.exports = {
     isJSON,
     controllerWrapper,
     mapObject,
     hashPassword,
     verifyPassword,
-    errorFormatter
+    errorFormatter,
+    findRepeatedItem,
+    arrayToMap
 }

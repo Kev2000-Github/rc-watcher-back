@@ -6,6 +6,7 @@ module.exports = {
             companyId: {
                 type: Sequelize.STRING,
                 allowNull: false,
+                primaryKey: true,
                 references: {
                     model: 'companies',
                     key: 'id'
@@ -14,6 +15,7 @@ module.exports = {
             questionId: {
                 type: Sequelize.STRING,
                 allowNull: false,
+                primaryKey: true,
                 references: {
                     model: 'questions',
                     key: 'id'
@@ -22,6 +24,7 @@ module.exports = {
             selectionId: {
                 type: Sequelize.STRING,
                 allowNull: false,
+                primaryKey: true,
                 references: {
                     model: 'selections',
                     key: 'id'

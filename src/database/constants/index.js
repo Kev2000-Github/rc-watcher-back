@@ -32,11 +32,19 @@ const REGULATIONS = {
     SECURITY: 'Seguridad'
 }
 
+const SELECTION_TYPE = {
+    SIMPLE: 'simple',
+    MULTIPLE: 'multiple',
+    POSITIVE: 'positive',
+    NEGATIVE: 'negative'
+}
+
 module.exports = {
     SOLUTION_STATE,
     ALERT_STATE,
     ALERT_PRIORITY,
     DOCUMENT_TYPE,
     ROLES,
-    REGULATIONS
+    REGULATIONS,
+    SELECTION_TYPE
 }

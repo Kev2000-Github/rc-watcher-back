@@ -51,6 +51,7 @@ module.exports = {
                         id: uuid(),
                         questionId: questionUuid,
                         description: option.description,
+                        type: option.type,
                         riskScore: option.riskScore,
                         createdAt: now,
                         updatedAt: now

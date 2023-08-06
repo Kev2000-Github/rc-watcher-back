@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         companyId: {
             type: DataTypes.STRING,
             allowNull: false,
+            primaryKey: true,
             references: {
                 model: 'companies',
                 key: 'id'
@@ -33,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
         questionId: {
             type: DataTypes.STRING,
             allowNull: false,
+            primaryKey: true,
             references: {
                 model: 'questions',
                 key: 'id'
@@ -41,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         selectionId: {
             type: DataTypes.STRING,
             allowNull: false,
+            primaryKey: true,
             references: {
                 model: 'selections',
                 key: 'id'
@@ -52,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'Responses',
         timestamps: true,
         paranoid: true,
+        
     })
     return Responses
 }

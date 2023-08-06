@@ -12,14 +12,17 @@
                 "options": [
                     {
                         "description": "Contamos con un departamento de impuestos dedicado que revisa regularmente las leyes fiscales y garantiza declaraciones de impuestos precisas y oportunas.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Dependemos de consultores fiscales externos para manejar nuestras obligaciones fiscales y recibir orientación sobre asuntos de cumplimiento.",
+                        "type": "simple",
                         "riskScore": 0.4
                     },
                     {
                         "description": "El cumplimiento fiscal es un desafío para nosotros y hemos enfrentado dificultades para cumplir con los plazos de presentación de informes.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]
@@ -32,18 +35,22 @@
                 "options": [
                     {
                         "description": "Impuesto sobre la Renta",
+                        "type": "multiple",
                         "riskScore": -0.2
                     },
                     {
                         "description": "Impuesto sobre las Sociedades.",
+                        "type": "multiple",
                         "riskScore": -0.2
                     },
                     {
                         "description": "Impuesto sobre la Nomina.",
+                        "type": "multiple",
                         "riskScore": -0.4
                     },
                     {
                         "description": "Impuesto a la Propiedad.",
+                        "type": "multiple",
                         "riskScore": -0.2
                     }
                 ]
@@ -56,14 +63,17 @@
                 "options": [
                     {
                         "description": "Realizamos ejercicios regulares de planificación fiscal para identificar deducciones y créditos elegibles, lo que resulta en ahorros fiscales.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "La identificación de incentivos fiscales no es una prioridad, lo que puede resultar en pérdida de potenciales ahorros fiscales.",
+                        "type": "simple",
                         "riskScore": 0.6
                     },
                     {
                         "description": "Actualmente no estamos al tanto de ninguna deducción o crédito fiscal específico aplicable a nuestro negocio.",
+                        "type": "simple",
                         "riskScore": 1
                     }
                 ]
@@ -76,14 +86,17 @@
                 "options": [
                     {
                         "description": "Contamos con un equipo dedicado que monitorea y garantiza el cumplimiento de las regulaciones fiscales internacionales para transacciones transfronterizas.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Las transacciones transfronterizas se gestionan caso por caso, y es posible que no estemos completamente informados de todas las implicaciones fiscales internacionales.",
+                        "type": "simple",
                         "riskScore": 0.3
                     },
                     {
                         "description": "Tenemos poca experiencia con transacciones transfronterizas.",
+                        "type": "simple",
                         "riskScore": 0.9
                     }
                 ]
@@ -96,14 +109,17 @@
                 "options": [
                     {
                         "description": "Mantenemos registros bien organizados y detallados para respaldar todas las transacciones y declaraciones de impuestos relacionadas.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Las prácticas de conservación de registros son inconsistentes y podríamos enfrentar dificultades al proporcionar documentación durante auditorías fiscales.",
+                        "type": "simple",
                         "riskScore": 0.7
                     },
                     {
                         "description": "No tenemos un proceso estructurado para conservar registros, lo que podría resultar en dificultades durante la presentación de informes de impuestos.",
+                        "type": "simple",
                         "riskScore": 0.9
                     }
                 ]
@@ -116,14 +132,17 @@
                 "options": [
                     {
                         "description": "Tenemos una estrategia de respuesta preparada y mantenemos una comunicación abierta con las autoridades fiscales durante las auditorías.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Las auditorías fiscales suelen ser estresantes y pueden resultar en retrasos debido a la falta de preparación.",
+                        "type": "simple",
                         "riskScore": 0.7
                     },
                     {
                         "description": "Hasta ahora, no hemos enfrentado ninguna auditoría fiscal o consulta por parte de las autoridades fiscales.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]
@@ -136,10 +155,12 @@
                 "options": [
                     {
                         "description": "Si",
+                        "type": "positive",
                         "riskScore": 0
                     },
                     {
-                        "description": "No.",
+                        "description": "No",
+                        "type": "negative",
                         "riskScore": 0.8
                     }
                 ]
@@ -159,14 +180,17 @@
                 "options": [
                     {
                         "description": "Realizamos estudios detallados de precios de transferencia y mantenemos documentación para garantizar el cumplimiento de las regulaciones.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "El cumplimiento de precios de transferencia es un desafío para nosotros.",
+                        "type": "simple",
                         "riskScore": 0.6
                     },
                     {
                         "description": "No tenemos un enfoque específico para administrar los precios de transferencia.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]
@@ -179,14 +203,17 @@
                 "options": [
                     {
                         "description": "Contamos con un equipo dedicado que monitorea y garantiza el registro y presentación oportunos del IVA / GST.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "A veces, se pasa por alto el cumplimiento del IVA / GST, lo que puede resultar en posibles multas o responsabilidades.",
+                        "type": "simple",
                         "riskScore": 0.5
                     },
                     {
                         "description": "Actualmente, no estamos registrados para el IVA / GST.",
+                        "type": "simple",
                         "riskScore": 1
                     }
                 ]
@@ -199,14 +226,17 @@
                 "options": [
                     {
                         "description": "Tenemos un sistema de impuestos de nómina bien establecido que calcula y retiene los impuestos de nómina con precisión.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "El cumplimiento de los impuestos de nómina es complejo, y con frecuencia necesitemos asistencia externa para garantizar la precisión.",
+                        "type": "simple",
                         "riskScore": 0.4
                     },
                     {
                         "description": "A veces, los impuestos de nómina se manejan manualmente, lo que puede resultar en errores en el cumplimiento.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]
@@ -219,14 +249,17 @@
                 "options": [
                     {
                         "description": "Tenemos un plan estructurado de pagos de impuestos que se ajusta a nuestro flujo de efectivo y evita multas por pagos tardíos.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Los pagos de impuestos a veces se retrasan, lo que resulta en multas o desafíos en el flujo de efectivo.",
+                        "type": "simple",
                         "riskScore": 0.5
                     },
                     {
                         "description": "No tenemos una estrategia específica de pagos de impuestos.",
+                        "type": "simple",
                         "riskScore": 0.7
                     }
                 ]
@@ -239,14 +272,17 @@
                 "options": [
                     {
                         "description": "Si, y tenemos un sistema en donde guardamos y buscamos eficientemente nuestros registros",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Si, pero nuestros registros no siempre estan ordenados y aveces se pierde tiempo buscando el registro adecuado",
+                        "type": "simple",
                         "riskScore": 0.5
                     },
                     {
                         "description": "No, no llevamos un registro como tal de nuestras transacciones",
+                        "type": "simple",
                         "riskScore": 1
                     }
                 ]
@@ -266,14 +302,17 @@
                 "options": [
                     {
                         "description": "Implementamos controles de acceso sólidos, cifrado y copias de seguridad regulares para proteger la información sensible.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Utilizamos firewalls y software antivirus para proteger nuestros sistemas, pero el cifrado de datos aún no está completamente implementado.",
+                        "type": "simple",
                         "riskScore": 0.5
                     },
                     {
                         "description": "Tenemos medidas de seguridad mínimas, lo que deja nuestros datos sensibles vulnerables a posibles violaciones.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]
@@ -286,14 +325,17 @@
                 "options": [
                     {
                         "description": "Tenemos un plan de respuesta a incidentes bien documentado que incluye pasos para identificar, contener, erradicar y recuperarse de un incidente de seguridad.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Los incidentes de seguridad se manejan de manera ad hoc, y no tenemos un plan formal para la respuesta y recuperación.",
+                        "type": "simple",
                         "riskScore": 0.6
                     },
                     {
                         "description": "No creemos que sea necesario, hasta ahora no hemos recibido ningun incidente.",
+                        "type": "simple",
                         "riskScore": 1
                     }
                 ]
@@ -306,14 +348,17 @@
                 "options": [
                     {
                         "description": "Realizamos capacitaciones regulares de concientización sobre ciberseguridad para todos los empleados y simulamos ataques de phishing para mejorar su conocimiento.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "La capacitación se proporciona solo a ciertos departamentos, dejando a algunos empleados sin conciencia de las posibles amenazas de ciberseguridad.",
+                        "type": "simple",
                         "riskScore": 0.6
                     },
                     {
                         "description": "La capacitación en ciberseguridad no es una prioridad para nosotros, y asumimos que los empleados ejercerán precaución por sí mismos.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]
@@ -326,14 +371,17 @@
                 "options": [
                     {
                         "description": "Tenemos un sistema automatizado de gestión de parches que actualiza regularmente el software y los sistemas para abordar rápidamente las vulnerabilidades de seguridad.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "La aplicación de parches se retrasa debido a limitaciones de recurso y tiempo, lo que deja a nuestros sistemas expuestos a vulnerabilidades conocidas durante períodos prolongados.",
+                        "type": "simple",
                         "riskScore": 0.6
                     },
                     {
                         "description": "No tenemos un proceso formal para las actualizaciones de software y parches.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]
@@ -353,14 +401,17 @@
                 "options": [
                     {
                         "description": "Realizamos evaluaciones exhaustivas de seguridad de todos los proveedores externos y les exigimos cumplir con estrictos estándares de seguridad.",
+                        "type": "simple",
                         "riskScore": 0.1
                     },
                     {
                         "description": "Las evaluaciones de seguridad de los proveedores se realizan caso por caso, y no tenemos un enfoque estandarizado.",
+                        "type": "simple",
                         "riskScore": 0.5
                     },
                     {
                         "description": "No tenemos medidas específicas de seguridad para manejar a los proveedores externos.",
+                        "type": "simple",
                         "riskScore": 1
                     }
                 ]
@@ -373,14 +424,17 @@
                 "options": [
                     {
                         "description": "Utilizamos una combinación de firewalls, sistemas de detección de intrusiones y segmentación de red para proteger nuestra red de posibles amenazas.",
+                        "type": "simple",
                         "riskScore": 0.2
                     },
                     {
                         "description": "La seguridad de la red se limita a firewalls básicos, y no tenemos mecanismos sólidos de detección de intrusiones.",
+                        "type": "simple",
                         "riskScore": 0.6
                     },
                     {
                         "description": "La seguridad de la red no es una preocupación importante para nosotros en este momento.",
+                        "type": "simple",
                         "riskScore": 0.9
                     }
                 ]
@@ -393,14 +447,17 @@
                 "options": [
                     {
                         "description": "Aplicamos requisitos de complejidad de contraseñas y fomentamos el uso de autenticación de múltiples factores para todos los empleados.",
+                        "type": "simple",
                         "riskScore": 0.2
                     },
                     {
                         "description": "Las políticas de contraseñas están vigentes, pero su cumplimiento es laxo, lo que conduce a prácticas de autenticación más débiles.",
+                        "type": "simple",
                         "riskScore": 0.7
                     },
                     {
                         "description": "No tenemos políticas específicas de contraseñas ni prácticas de autenticación.",
+                        "type": "simple",
                         "riskScore": 1
                     }
                 ]
@@ -413,14 +470,17 @@
                 "options": [
                     {
                         "description": "Implementamos controles de acceso basados en roles, monitoreamos las actividades de los usuarios y realizamos auditorías periódicas para identificar y prevenir amenazas internas.",
+                        "type": "simple",
                         "riskScore": 0.2
                     },
                     {
                         "description": "Las amenazas internas no son una preocupación principal para nosotros, y no tenemos medidas dedicadas para monitorear el acceso interno.",
+                        "type": "simple",
                         "riskScore": 0.6
                     },
                     {
                         "description": "Confiamos en nuestros empleados y no monitoreamos activamente el acceso interno.",
+                        "type": "simple",
                         "riskScore": 1
                     }
                 ]
@@ -433,14 +493,17 @@
                 "options": [
                     {
                         "description": "Realizamos copias de seguridad periódicas de datos críticos, almacenamos las copias de seguridad de forma segura y tenemos un plan integral de recuperación ante desastres.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Las copias de seguridad de datos son esporádicas, y no contamos con una estrategia integral de recuperación ante desastres.",
+                        "type": "simple",
                         "riskScore": 0.7
                     },
                     {
                         "description": "Aún no hemos implementado copias de seguridad de datos ni planificación de recuperación ante desastres.",
+                        "type": "simple",
                         "riskScore": 1
                     }
                 ]
@@ -460,14 +523,17 @@
                 "options": [
                     {
                         "description": "Utilizamos verificación de identidad electrónica y verificación de documentos emitidos por el gobierno para autenticar a nuestros clientes.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Nuestro equipo de cumplimiento verifica manualmente la identidad de los clientes cruzando información y realizando verificaciones de antecedentes.",
+                        "type": "simple",
                         "riskScore": 0.2
                     },
                     {
                         "description": "Actualmente no tenemos un proceso estandarizado para verificar la identidad de los clientes.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]
@@ -480,14 +546,17 @@
                 "options": [
                     {
                         "description": "Tenemos un enfoque basado en el riesgo que considera factores como la ubicación del cliente, la naturaleza del negocio y el volumen de transacciones para asignar calificaciones de riesgo.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Nuestra evaluación de riesgos se basa principalmente en la intuición y experiencias pasadas con los clientes.",
+                        "type": "simple",
                         "riskScore": 0.6
                     },
                     {
                         "description": "Actualmente no evaluamos el riesgo ni asignamos calificaciones de riesgo a nuestros clientes.",
+                        "type": "simple",
                         "riskScore": 0.9
                     }
                 ]
@@ -500,14 +569,17 @@
                 "options": [
                     {
                         "description": "Realizamos investigaciones exhaustivas sobre clientes de alto riesgo, incluido el análisis de propiedad beneficiaria y la fuente de fondos.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "La debida diligencia reforzada se realiza solo en casos excepcionales, y nos basamos en informes de terceros para obtener información.",
+                        "type": "simple",
                         "riskScore": 0.7
                     },
                     {
                         "description": "Actualmente no tenemos un proceso establecido para realizar una debida diligencia reforzada en clientes de alto riesgo.",
+                        "type": "simple",
                         "riskScore": 0.9
                     }
                 ]
@@ -520,14 +592,17 @@
                 "options": [
                     {
                         "description": "Contamos con un proceso bien definido para reportar transacciones sospechosas a la unidad de inteligencia financiera correspondiente de manera oportuna.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "El reporte de transacciones sospechosas se realiza de manera ad hoc, y no tenemos un sistema formal implementado.",
+                        "type": "simple",
                         "riskScore": 0.5
                     },
                     {
                         "description": "Nunca hemos encontrado transacciones sospechosas para reportar.",
+                        "type": "simple",
                         "riskScore": 1
                     }
                 ]
@@ -547,14 +622,17 @@
                 "options": [
                     {
                         "description": "Brindamos sesiones de capacitación periódicas sobre AML a todos los empleados y realizamos evaluaciones para medir su comprensión.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "La capacitación se limita a los equipos de cumplimiento y gestión de riesgos; otros empleados pueden no estar completamente al tanto de las obligaciones de AML.",
+                        "type": "simple",
                         "riskScore": 0.4
                     },
                     {
                         "description": "Actualmente no tenemos un programa de capacitación establecido para la conciencia sobre AML.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]
@@ -567,14 +645,17 @@
                 "options": [
                     {
                         "description": "Mantenemos estrictos controles internos y realizamos auditorías regulares para asegurar la integridad y seguridad de las transacciones financieras.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Dependemos en gran medida de la confianza en nuestros empleados y procesos manuales para proteger las transacciones financieras.",
+                        "type": "simple",
                         "riskScore": 0.6
                     },
                     {
                         "description": "No estamos seguros de si nuestras transacciones financieras están completamente protegidas y aseguradas.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]
@@ -587,14 +668,17 @@
                 "options": [
                     {
                         "description": "Implementamos sistemas automatizados de monitoreo y alertas para supervisar las transacciones de alto valor o inusuales y realizar revisiones periódicas.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "Nuestro personal realiza verificaciones manuales de transacciones de alto valor o inusuales, pero puede haber margen para errores.",
+                        "type": "simple",
                         "riskScore": 0.7
                     },
                     {
                         "description": "No tenemos un proceso formal para supervisar o controlar transacciones de alto valor o inusuales.",
+                        "type": "simple",
                         "riskScore": 0.9
                     }
                 ]
@@ -607,14 +691,17 @@
                 "options": [
                     {
                         "description": "Nuestras operaciones financieras están completamente documentadas y compartimos información relevante con las autoridades competentes de manera oportuna.",
+                        "type": "simple",
                         "riskScore": 0
                     },
                     {
                         "description": "A veces podemos enfrentar retrasos o inexactitudes en la divulgación de información financiera a las autoridades competentes.",
+                        "type": "simple",
                         "riskScore": 0.6
                     },
                     {
                         "description": "No estamos seguros de si nuestras operaciones financieras son completamente transparentes y si divulgamos información relevante de manera adecuada.",
+                        "type": "simple",
                         "riskScore": 0.8
                     }
                 ]

@@ -2,6 +2,9 @@
 const {
     Model
 } = require('sequelize')
+const { enumFields } = require('../helper')
+const { SELECTION_TYPE } = require('../constants')
+
 module.exports = (sequelize, DataTypes) => {
     class Selections extends Model {
     /**
@@ -36,7 +39,8 @@ module.exports = (sequelize, DataTypes) => {
         riskScore: {
             type: DataTypes.FLOAT,
             allowNull: false,
-        }
+        },
+        type: enumFields(DataTypes, SELECTION_TYPE, SELECTION_TYPE.SIMPLE)
     }, {
         sequelize,
         tableName: 'selections',

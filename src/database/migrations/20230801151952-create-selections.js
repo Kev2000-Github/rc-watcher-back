@@ -1,4 +1,7 @@
 'use strict'
+const { enumArray } = require('../helper')
+const { SELECTION_TYPE } = require('../constants')
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
@@ -22,6 +25,10 @@ module.exports = {
             },
             riskScore: {
                 type: Sequelize.FLOAT,
+                allowNull: false
+            },
+            type: {
+                type: Sequelize.ENUM(...enumArray(SELECTION_TYPE)),
                 allowNull: false
             },
             createdAt: {
