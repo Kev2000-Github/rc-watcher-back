@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
                 through: models.UserSolutions,
                 foreignKey: 'responsibleId'
             })
+            Users.belongsToMany(models.Quizzes, {
+                through: models.UserQuizzes,
+                foreignKey: 'userId'
+            })
             Users.belongsTo(models.Roles, {
                 foreignKey: 'roleId'
             })

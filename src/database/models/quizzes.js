@@ -2,6 +2,7 @@
 const {
     Model
 } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
     class Quizzes extends Model {
     /**
@@ -10,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
         static associate(models) {
+            Quizzes.belongsToMany(models.Users, {
+                through: models.UserQuizzes,
+                foreignKey: 'quizId'
+            })
             Quizzes.belongsTo(models.Regulations, {
                 foreignKey: 'regulationId'
             })

@@ -4,6 +4,14 @@ module.exports = {
             code: 'quiz_NF',
             message: 'Quiz not found'
         },
+        quizCompleted: {
+            code: 'quiz_C',
+            message: 'Quiz is already completed'
+        },
+        quizNotCompleted: {
+            code: 'quiz_NC',
+            message: 'Quiz not completed yet'
+        },
         answerOutScope: {
             code: 'quiz_QE',
             message: 'there are answers outside the scope of this quiz'
