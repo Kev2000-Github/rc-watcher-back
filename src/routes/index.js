@@ -10,6 +10,7 @@ router.use('/companies', require('./companies/companies.route').companiesRouter)
 router.use('/countries', require('./countries/countries.route').countriesRouter)
 router.use('/quizzes', require('./quizzes/quizzes.route').quizzesRouter)
 router.use('/overviews', require('./overviews/overviews.route').overviewsRouter)
+router.use('/amlprofiles', require('./amlprofiles/amlprofiles.route').amlprofilesRouter)
 //SEPARATOR --DON'T TOUCH THIS--
 module.exports = {
     router

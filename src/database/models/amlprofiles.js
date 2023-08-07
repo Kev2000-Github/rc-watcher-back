@@ -10,7 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
         static associate(models) {
-            // define association here
+            AMLProfiles.hasMany(models.AMLSanctions, {
+                foreignKey: 'profileId'
+            })
+            AMLProfiles.hasMany(models.AMLArticles, {
+                foreignKey: 'profileId'
+            })
         }
     }
     AMLProfiles.init({
@@ -22,9 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         fullName: DataTypes.STRING,
         birthdate: DataTypes.DATE,
         country: DataTypes.STRING,
-        articles: DataTypes.TEXT,
-        sanctions: DataTypes.TEXT,
-        riskLevel: DataTypes.INTEGER,
+        riskLevel: DataTypes.STRING,
         riskPoints: DataTypes.FLOAT,
         picture: DataTypes.TEXT
     }, {

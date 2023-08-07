@@ -17,14 +17,8 @@ module.exports = {
             country: {
                 type: Sequelize.STRING
             },
-            articles: {
-                type: Sequelize.TEXT
-            },
-            sanctions: {
-                type: Sequelize.TEXT
-            },
             riskLevel: {
-                type: Sequelize.INTEGER
+                type: Sequelize.STRING
             },
             riskPoints: {
                 type: Sequelize.FLOAT
