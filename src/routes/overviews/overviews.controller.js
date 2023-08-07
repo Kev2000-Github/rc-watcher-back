@@ -17,7 +17,7 @@ module.exports.get_overviews = controllerWrapper(async (req, res) => {
     //GET RISK SCORE
     const riskScores = await ViewRiskScore.findAll({where: {companyId}})
     const totalSumRiskScore = riskScores.reduce((sum, curr) => sum + curr.riskScore, 0)
-    const totalRiskScore = riskScores.length > 0 ? totalSumRiskScore/riskScores.length : 0
+    const totalRiskScore = riskScores.length > 0 ? totalSumRiskScore/riskScores.length : 1
     const complianceScore = Number((1 - totalRiskScore).toFixed(2))
     //GET AFFECTING RISK COUNT
     const affectingRiskCount = riskScores.reduce((count, curr) => {
@@ -35,7 +35,7 @@ module.exports.get_overviews = controllerWrapper(async (req, res) => {
     //TODO: GET TOP 10 MOST URGENT ALERTS
 
     //TODO: GET TOP 10 MOST URGENT RISKS
-    
+
     res.json({data: {
         complianceScore,
         pendingQuizCount,
