@@ -8,6 +8,10 @@ const {messages} = require('./messages')
 const { DOCUMENT_TYPE } = require('../../database/constants')
 const uuid = require('uuid').v4
 
+const userInclude = (id) => {
+    return {model: Users, where: {id}, required: false}
+}
+
 module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
     const {quizId} = req.params
     const includeOpts = {include: [
@@ -25,7 +29,7 @@ module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
 
 module.exports.get_quizzes = controllerWrapper(async (req, res) => {
     const pagination = req.pagination
-    const includeOpts = {include: [Questions, Regulations, {model: Users, where: {id: req.user.id}, required: false}]}
+    const includeOpts = {include: [Questions, Regulations, userInclude(req.user.id)]}
     const opts = {...pagination, ...includeOpts}
     let quizzes = await paginate(Quizzes, opts)
     quizzes.data = quizzes.data.map(quiz => responseData(quiz))
@@ -36,7 +40,7 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
     const {quizId} = req.params
     const {responses} = req.body
     const companyId = req.user.Company.id
-    const quiz = await Quizzes.findByPk(quizId, {include: {model: Users, required: false}})
+    const quiz = await Quizzes.findByPk(quizId, {include: userInclude(req.user.id)})
     if(!quiz){
         throw HttpStatusError.notFound(messages.notFound)
     }
@@ -77,8 +81,11 @@ module.exports.put_quizzes_form_quizId = controllerWrapper(async (req, res) => {
     const companyId = req.user.Company.id
     const questionIds = responses.map(resp => resp.questionId)
     const opts = {where: {companyId, questionId: questionIds}}
-    const existingResponses = await Responses.findAll(opts)
-    if(existingResponses.length === 0){
+    const quiz = await Quizzes.findByPk(quizId, {include: userInclude(req.user.id)})
+    if(!quiz){
+        throw HttpStatusError.notFound(messages.notFound)
+    }
+    if(quiz.Users.length === 0){
         throw HttpStatusError.unprocesableEntity(messages.quizNotCompleted)
     }
     await validateQuizRequest(quizId, responses)
@@ -102,8 +109,27 @@ module.exports.put_quizzes_form_quizId = controllerWrapper(async (req, res) => {
             return prev
         }, [])
         await Responses.destroy(opts)
-        const responseData = await Responses.bulkCreate(responseFormatted, {transaction})
+        await Responses.bulkCreate(responseFormatted, {transaction})
         await Documents.bulkCreate(documentFormatted, {transaction})
-        res.json({data: {created: responseData.length}})    
+        res.json({data: {created: true}})    
+    })
+})
+
+module.exports.delete_quizzes_form_quizId = controllerWrapper(async (req, res) => {
+    const {quizId} = req.params
+    const companyId = req.user.Company.id
+    const quiz = await Quizzes.findByPk(quizId, {include: [Questions, userInclude(req.user.id)]})
+    if(!quiz){
+        throw HttpStatusError.notFound(messages.notFound)
+    }
+    if(quiz.Users.length === 0){
+        throw HttpStatusError.unprocesableEntity(messages.quizNotCompleted)
+    }
+    return sequelize.transaction(async transaction => {
+        await quiz.removeUser(req.user.id, {transaction})
+        const questionId = quiz.Questions.map(question => question.id)
+        await Responses.destroy({where: {companyId, questionId}}, {transaction})
+        await Documents.destroy({where: {companyId, questionId}}, {transaction})
+        res.json({data: {deleted: true}})
     })
 })

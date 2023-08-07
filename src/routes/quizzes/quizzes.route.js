@@ -43,6 +43,15 @@ router.put(
     checkRole({blacklist: [ROLES.OPERATOR]}),
     controller.put_quizzes_form_quizId
 )
+
+router.delete(
+    '/form/:quizId', 
+    validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'quizzes.in-delete-quizzes-form-quiz-id.schema.js'))),
+    validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'quizzes.out-delete-quizzes-form-quiz-id.schema.js'))),
+    authentication,
+    checkRole({blacklist: [ROLES.OPERATOR]}),
+    controller.delete_quizzes_form_quizId
+)
 //ROUTES ABOVE --DON'T TOUCH THIS--
 module.exports = {
     quizzesRouter: router
