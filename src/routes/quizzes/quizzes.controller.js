@@ -14,16 +14,41 @@ const companyInclude = (id) => {
 
 module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
     const {quizId} = req.params
+    const companyId = req.user.Company.id
     const includeOpts = {include: [
         Regulations, 
         {
             model: Questions,
             include: [Selections, Risks]
-        }
+        },
+        companyInclude(companyId)
     ]}
     const options = {...includeOpts, where: {id: quizId}}
-    const quiz = await Quizzes.findOne(options)
+    let quiz = await Quizzes.findOne(options)
     if(!quiz) throw HttpStatusError.notFound(messages.notFound)
+    if(quiz.Companies.length > 0){
+        const questionIds = quiz.Questions.map(question => question.id)
+        const opts = {where: {
+            companyId,
+            questionId: questionIds
+        }}
+        const responses = await Responses.findAll(opts)
+        const documents = await Documents.findAll(opts)
+        const resSelectionIds = responses.map(resp => resp.selectionId)
+        const questionsResp = quiz.Questions.map(question => {
+            question.Document = documents.find(doc => doc.questionId === question.id)
+            const newSelections = question.Selections.map(selection => {
+                if(resSelectionIds.includes(selection.id)){
+                    selection.selected = true
+                    return selection
+                }
+                return selection
+            })
+            question.Selections = newSelections
+            return question
+        })
+        quiz.Questions = questionsResp
+    }
     res.json({data: quizFormResponseData(quiz)})
 })
 
@@ -67,7 +92,6 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
                 type: docType
             }
             return [...prev, data]
-            
         }, [])
         
         const responseData = await Responses.bulkCreate(responseFormatted, {transaction})
@@ -136,3 +160,4 @@ module.exports.delete_quizzes_form_quizId = controllerWrapper(async (req, res) =
         res.json({data: {deleted: true}})
     })
 })
+

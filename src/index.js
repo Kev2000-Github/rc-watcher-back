@@ -8,7 +8,7 @@ const {errorHandler} = require('./errors/errorHandler')
 const {PORT} = require('./config')
 
 app.use(cors())
-app.use(express.json())
+app.use(express.json({limit: '5mb'}))
 app.use('/v1', router)
 app.use(errorHandler)
 

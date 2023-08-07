@@ -3,6 +3,7 @@ const { HttpStatusError } = require('../../errors/httpStatusError')
 const { arrayToMap } = require('../../utils/common')
 const {messages} = require('./messages')
 const { SELECTION_TYPE } = require('../../database/constants')
+
 const quizResponseData = (quiz) => {
     return quiz ? {
         id: quiz.id,
@@ -27,7 +28,7 @@ const quizFormResponseData = (quiz) => {
 }
 
 const questionResponseData = (question) => {
-    return question ? {
+    const resp = question ? {
         id: question.id,
         description: question.description,
         hasDoc: question.hasDoc,
@@ -36,21 +37,33 @@ const questionResponseData = (question) => {
         Selections: question.Selections? 
             question.Selections.map(selection => selectionResponseData(selection)) : null
     } : null
+    if(question.Document) resp.Document = documentResponseData(question.Document)
+    return resp
 }
 
 const selectionResponseData = (selection) => {
-    return selection ? {
+    const resp = selection ? {
         id: selection.id,
         description: selection.description,
         riskScore: selection.riskScore,
         type: selection.type
     } : null
+    if(selection.selected) resp.selected = true
+    return resp
 }
 
 const riskResponseData = (risk) => {
     return risk ? {
         id: risk.id,
         name: risk.name
+    } : null
+}
+
+const documentResponseData = (doc) => {
+    return doc ? {
+        id: doc.id,
+        type: doc.type,
+        file: doc.file
     } : null
 }
 
