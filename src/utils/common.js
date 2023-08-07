@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt')
+const { enumArray } = require('../database/helper')
+const { DOCUMENT_TYPE } = require('../database/constants')
 
 const isJSON = (objStringified) => {
     try{
@@ -71,6 +73,23 @@ const arrayToMap = (arr, placeholder) => {
     return map
 }
 
+const getDocumentType = (docBase64) => {
+    try{
+        if(Buffer.from(docBase64, 'base64').toString('base64') === docBase64){
+            return null
+        }
+        const dataType = docBase64.split(';')[0]
+        const imgType = dataType.split('/').pop()
+        if(enumArray(DOCUMENT_TYPE).includes(imgType)){
+            return imgType
+        }
+    }
+    catch(err){
+        return null
+    }
+    return null
+}
+
 module.exports = {
     isJSON,
     controllerWrapper,
@@ -79,5 +98,6 @@ module.exports = {
     verifyPassword,
     errorFormatter,
     findRepeatedItem,
-    arrayToMap
+    arrayToMap,
+    getDocumentType
 }

@@ -1,5 +1,5 @@
 
-const { controllerWrapper } = require('../../utils/common')
+const { controllerWrapper, getDocumentType } = require('../../utils/common')
 const { Quizzes, Companies, Questions, Regulations, Selections, Risks, Responses, Documents, sequelize } = require('../../database/models')
 const { paginate } = require('../../database/helper')
 const { responseData, quizFormResponseData, validateQuizRequest } = require('./helper')
@@ -56,17 +56,18 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
             selectionId: response.selectionId
         }))
         const documentFormatted = responses.reduce((prev, curr) => {
-            if(curr.document){
-                const data = {
-                    id: uuid(),
-                    companyId,
-                    questionId: curr.questionId,
-                    file: curr.document,
-                    type: DOCUMENT_TYPE.JPG
-                }
-                return [...prev, data]
+            if(!curr.document) return prev
+            const docType = getDocumentType(curr.document)
+            if(!docType) throw HttpStatusError.unprocesableEntity(messages.docNotValid)
+            const data = {
+                id: uuid(),
+                companyId,
+                questionId: curr.questionId,
+                file: curr.document,
+                type: docType
             }
-            return prev
+            return [...prev, data]
+            
         }, [])
         
         const responseData = await Responses.bulkCreate(responseFormatted, {transaction})

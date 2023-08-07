@@ -8,6 +8,10 @@ module.exports = {
             code: 'quiz_C',
             message: 'Quiz is already completed'
         },
+        docNotValid: {
+            code: 'quiz_DNV',
+            message: 'Document only accepts type JPG, PNG and PDF'
+        },
         quizNotCompleted: {
             code: 'quiz_NC',
             message: 'Quiz not completed yet'
