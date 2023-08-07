@@ -8,7 +8,7 @@ const {messages} = require('./messages')
 const { DOCUMENT_TYPE } = require('../../database/constants')
 const uuid = require('uuid').v4
 
-const userInclude = (id) => {
+const companyInclude = (id) => {
     return {model: Companies, where: {id}, required: false}
 }
 
@@ -30,7 +30,7 @@ module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
 module.exports.get_quizzes = controllerWrapper(async (req, res) => {
     const pagination = req.pagination
     const companyId = req.user.Company.id
-    const includeOpts = {include: [Questions, Regulations, userInclude(companyId)]}
+    const includeOpts = {include: [Questions, Regulations, companyInclude(companyId)]}
     const opts = {...pagination, ...includeOpts}
     let quizzes = await paginate(Quizzes, opts)
     quizzes.data = quizzes.data.map(quiz => responseData(quiz))
@@ -41,7 +41,7 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
     const {quizId} = req.params
     const {responses} = req.body
     const companyId = req.user.Company.id
-    const quiz = await Quizzes.findByPk(quizId, {include: userInclude(companyId)})
+    const quiz = await Quizzes.findByPk(quizId, {include: companyInclude(companyId)})
     if(!quiz){
         throw HttpStatusError.notFound(messages.notFound)
     }
@@ -82,7 +82,7 @@ module.exports.put_quizzes_form_quizId = controllerWrapper(async (req, res) => {
     const companyId = req.user.Company.id
     const questionIds = responses.map(resp => resp.questionId)
     const opts = {where: {companyId, questionId: questionIds}}
-    const quiz = await Quizzes.findByPk(quizId, {include: userInclude(companyId)})
+    const quiz = await Quizzes.findByPk(quizId, {include: companyInclude(companyId)})
     if(!quiz){
         throw HttpStatusError.notFound(messages.notFound)
     }
@@ -120,7 +120,7 @@ module.exports.put_quizzes_form_quizId = controllerWrapper(async (req, res) => {
 module.exports.delete_quizzes_form_quizId = controllerWrapper(async (req, res) => {
     const {quizId} = req.params
     const companyId = req.user.Company.id
-    const quiz = await Quizzes.findByPk(quizId, {include: [Questions, userInclude(companyId)]})
+    const quiz = await Quizzes.findByPk(quizId, {include: [Questions, companyInclude(companyId)]})
     if(!quiz){
         throw HttpStatusError.notFound(messages.notFound)
     }
