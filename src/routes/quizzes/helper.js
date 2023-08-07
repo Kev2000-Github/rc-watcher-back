@@ -9,7 +9,7 @@ const quizResponseData = (quiz) => {
         name: quiz.name,
         description: quiz.description,
         Regulation: regulationResponseData(quiz.Regulation),
-        isCompleted: quiz.Users.length > 0,
+        isCompleted: quiz.Companies.length > 0,
         questionCount: quiz.Questions ? quiz.Questions.length : 0
     } : null
 }

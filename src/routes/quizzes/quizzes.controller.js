@@ -1,6 +1,6 @@
 
 const { controllerWrapper } = require('../../utils/common')
-const { Quizzes, Users, Questions, Regulations, Selections, Risks, Responses, Documents, sequelize } = require('../../database/models')
+const { Quizzes, Companies, Questions, Regulations, Selections, Risks, Responses, Documents, sequelize } = require('../../database/models')
 const { paginate } = require('../../database/helper')
 const { responseData, quizFormResponseData, validateQuizRequest } = require('./helper')
 const { HttpStatusError } = require('../../errors/httpStatusError')
@@ -9,7 +9,7 @@ const { DOCUMENT_TYPE } = require('../../database/constants')
 const uuid = require('uuid').v4
 
 const userInclude = (id) => {
-    return {model: Users, where: {id}, required: false}
+    return {model: Companies, where: {id}, required: false}
 }
 
 module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
@@ -29,7 +29,8 @@ module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
 
 module.exports.get_quizzes = controllerWrapper(async (req, res) => {
     const pagination = req.pagination
-    const includeOpts = {include: [Questions, Regulations, userInclude(req.user.id)]}
+    const companyId = req.user.Company.id
+    const includeOpts = {include: [Questions, Regulations, userInclude(companyId)]}
     const opts = {...pagination, ...includeOpts}
     let quizzes = await paginate(Quizzes, opts)
     quizzes.data = quizzes.data.map(quiz => responseData(quiz))
@@ -40,11 +41,11 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
     const {quizId} = req.params
     const {responses} = req.body
     const companyId = req.user.Company.id
-    const quiz = await Quizzes.findByPk(quizId, {include: userInclude(req.user.id)})
+    const quiz = await Quizzes.findByPk(quizId, {include: userInclude(companyId)})
     if(!quiz){
         throw HttpStatusError.notFound(messages.notFound)
     }
-    if(quiz.Users.length > 0){
+    if(quiz.Companies.length > 0){
         throw HttpStatusError.unprocesableEntity(messages.quizCompleted)
     }
     await validateQuizRequest(quizId, responses)
@@ -70,7 +71,7 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
         
         const responseData = await Responses.bulkCreate(responseFormatted, {transaction})
         await Documents.bulkCreate(documentFormatted, {transaction})
-        await quiz.addUser(req.user.id, {transaction})
+        await quiz.addCompany(companyId, {transaction})
         res.json({data: {created: responseData.length}})    
     })
 })
@@ -81,11 +82,11 @@ module.exports.put_quizzes_form_quizId = controllerWrapper(async (req, res) => {
     const companyId = req.user.Company.id
     const questionIds = responses.map(resp => resp.questionId)
     const opts = {where: {companyId, questionId: questionIds}}
-    const quiz = await Quizzes.findByPk(quizId, {include: userInclude(req.user.id)})
+    const quiz = await Quizzes.findByPk(quizId, {include: userInclude(companyId)})
     if(!quiz){
         throw HttpStatusError.notFound(messages.notFound)
     }
-    if(quiz.Users.length === 0){
+    if(quiz.Companies.length === 0){
         throw HttpStatusError.unprocesableEntity(messages.quizNotCompleted)
     }
     await validateQuizRequest(quizId, responses)
@@ -108,7 +109,8 @@ module.exports.put_quizzes_form_quizId = controllerWrapper(async (req, res) => {
             }
             return prev
         }, [])
-        await Responses.destroy(opts)
+        await Responses.destroy({...opts, transaction})
+        await Documents.destroy({...opts, transaction})
         await Responses.bulkCreate(responseFormatted, {transaction})
         await Documents.bulkCreate(documentFormatted, {transaction})
         res.json({data: {created: true}})    
@@ -118,18 +120,18 @@ module.exports.put_quizzes_form_quizId = controllerWrapper(async (req, res) => {
 module.exports.delete_quizzes_form_quizId = controllerWrapper(async (req, res) => {
     const {quizId} = req.params
     const companyId = req.user.Company.id
-    const quiz = await Quizzes.findByPk(quizId, {include: [Questions, userInclude(req.user.id)]})
+    const quiz = await Quizzes.findByPk(quizId, {include: [Questions, userInclude(companyId)]})
     if(!quiz){
         throw HttpStatusError.notFound(messages.notFound)
     }
-    if(quiz.Users.length === 0){
+    if(quiz.Companies.length === 0){
         throw HttpStatusError.unprocesableEntity(messages.quizNotCompleted)
     }
     return sequelize.transaction(async transaction => {
-        await quiz.removeUser(req.user.id, {transaction})
+        await quiz.removeCompany(companyId, {transaction})
         const questionId = quiz.Questions.map(question => question.id)
-        await Responses.destroy({where: {companyId, questionId}}, {transaction})
-        await Documents.destroy({where: {companyId, questionId}}, {transaction})
+        await Responses.destroy({where: {companyId, questionId}, transaction})
+        await Documents.destroy({where: {companyId, questionId}, transaction})
         res.json({data: {deleted: true}})
     })
 })

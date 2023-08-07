@@ -2,12 +2,12 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('userQuizzes', {
-            userId: {
+        await queryInterface.createTable('companyQuizzes', {
+            companyId: {
                 type: Sequelize.STRING,
                 allowNull: false,
                 references: {
-                    model: 'users',
+                    model: 'companies',
                     key: 'id'
                 }
             },
@@ -30,6 +30,6 @@ module.exports = {
         })
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('userQuizzes')
+        await queryInterface.dropTable('companyQuizzes')
     }
 }
