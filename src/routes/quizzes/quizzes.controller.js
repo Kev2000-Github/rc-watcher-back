@@ -26,7 +26,7 @@ module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
     const options = {...includeOpts, where: {id: quizId}}
     let quiz = await Quizzes.findOne(options)
     if(!quiz) throw HttpStatusError.notFound(messages.notFound)
-    if(quiz.Companies.length > 0){
+    if(quiz.isCompleted()){
         const questionIds = quiz.Questions.map(question => question.id)
         const opts = {where: {
             companyId,
@@ -70,7 +70,7 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
     if(!quiz){
         throw HttpStatusError.notFound(messages.notFound)
     }
-    if(quiz.Companies.length > 0){
+    if(quiz.isCompleted()){
         throw HttpStatusError.unprocesableEntity(messages.quizCompleted)
     }
     await validateQuizRequest(quizId, responses)
@@ -111,7 +111,7 @@ module.exports.put_quizzes_form_quizId = controllerWrapper(async (req, res) => {
     if(!quiz){
         throw HttpStatusError.notFound(messages.notFound)
     }
-    if(quiz.Companies.length === 0){
+    if(!quiz.isCompleted()){
         throw HttpStatusError.unprocesableEntity(messages.quizNotCompleted)
     }
     await validateQuizRequest(quizId, responses)

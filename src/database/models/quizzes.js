@@ -53,5 +53,13 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: true,
         paranoid: true
     })
+    Quizzes.prototype.isCompleted = function() {
+        try{
+            return this.Companies.length > 0
+        }
+        catch(err){
+            return false
+        }
+    }
     return Quizzes
 }
