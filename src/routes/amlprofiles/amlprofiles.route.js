@@ -11,7 +11,7 @@ router.get(
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'amlprofiles.in-get-amlprofiles.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'amlprofiles.out-get-amlprofiles.schema.js'))),
     authentication,
-    checkRole({blacklist: [ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN]}),
     controller.get_amlprofiles
 )
 //ROUTES ABOVE --DON'T TOUCH THIS--

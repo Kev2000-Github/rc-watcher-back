@@ -23,7 +23,8 @@ const DOCUMENT_TYPE = {
 
 const ROLES = {
     ADMIN: 'admin',
-    OPERATOR: 'operativo'
+    OPERATOR: 'operativo',
+    AUDITOR: 'auditor'
 }
 
 const REGULATIONS = {

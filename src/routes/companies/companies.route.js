@@ -12,7 +12,7 @@ router.get(
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'companies.in-get-companies.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'companies.out-get-companies.schema.js'))),
     authentication,
-    checkRole({blacklist: [ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN]}),
     pagination,
     controller.get_companies
 )

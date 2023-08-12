@@ -10,7 +10,7 @@ router.get(
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'overviews.in-get-overviews.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'overviews.out-get-overviews.schema.js'))),
     authentication,
-    checkRole({blacklist: [ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN]}),
     controller.get_overviews
 )
 //ROUTES ABOVE --DON'T TOUCH THIS--

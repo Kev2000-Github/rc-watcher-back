@@ -12,7 +12,7 @@ router.get(
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'quizzes.in-get-quizzes-form-id.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'quizzes.out-get-quizzes-form-id.schema.js'))),
     authentication,
-    checkRole({blacklist: [ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN]}),
     controller.get_quizzes_form_id
 )
 
@@ -21,7 +21,7 @@ router.get(
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'quizzes.in-get-quizzes.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'quizzes.out-get-quizzes.schema.js'))),
     authentication,
-    checkRole({blacklist: [ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN]}),
     pagination,
     controller.get_quizzes
 )
@@ -31,7 +31,7 @@ router.post(
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'quizzes.in-post-quizzes-form-quiz-id.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'quizzes.out-post-quizzes-form-quiz-id.schema.js'))),
     authentication,
-    checkRole({blacklist: [ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN]}),
     controller.post_quizzes_form_quizId
 )
 
@@ -40,7 +40,7 @@ router.put(
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'quizzes.in-put-quizzes-form-quiz-id.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'quizzes.out-put-quizzes-form-quiz-id.schema.js'))),
     authentication,
-    checkRole({blacklist: [ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN]}),
     controller.put_quizzes_form_quizId
 )
 
@@ -49,7 +49,7 @@ router.delete(
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'quizzes.in-delete-quizzes-form-quiz-id.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'quizzes.out-delete-quizzes-form-quiz-id.schema.js'))),
     authentication,
-    checkRole({blacklist: [ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN]}),
     controller.delete_quizzes_form_quizId
 )
 //ROUTES ABOVE --DON'T TOUCH THIS--
