@@ -13,7 +13,7 @@ router.post(
 )
 
 router.delete(
-    '/:id', 
+    '/', 
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'auths.in-delete-auths.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'auths.out-delete-auths.schema.js'))),
     controller.delete_auths

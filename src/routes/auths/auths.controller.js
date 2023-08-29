@@ -25,8 +25,10 @@ module.exports.post_auths = controllerWrapper(async (req, res) => {
 })
 
 module.exports.delete_auths = controllerWrapper(async (req, res) => {
-    const {id} = req.params
-    const session = await Sessions.findByPk(id)
+    const bearerToken = req.headers['authorization']
+    if(!bearerToken) throw HttpStatusError.unauthorize({message: 'Authentication credentials were not provided'})
+    const sessionId = bearerToken.split(' ').pop()
+    const session = await Sessions.findByPk(sessionId)
     if(!session) throw HttpStatusError.notFound(messages.notFound)
     await session.destroy()
     res.json({data: session.id})
