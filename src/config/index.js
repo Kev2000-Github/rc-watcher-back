@@ -13,5 +13,14 @@ addErrors(ajv)
 
 module.exports = {
     PORT: process.env.PORT ?? 3000,
-    ajv: ajv
+    ajv: ajv,
+    S3: {
+        region: process.env.AWS_REGION,
+        endpoint: process.env.AWS_ENDPOINT,
+        bucket: process.env.AWS_BUCKET,
+        credentials: {
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+        }
+    }
 }

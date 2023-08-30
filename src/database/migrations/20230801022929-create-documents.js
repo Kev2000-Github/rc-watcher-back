@@ -30,6 +30,10 @@ module.exports = {
             type: {
                 type: Sequelize.ENUM(...enumArray(DOCUMENT_TYPE))
             },
+            name: {
+                type: Sequelize.STRING,
+                allowNull: false
+            },
             file: {
                 type: Sequelize.TEXT,
                 allowNull: false

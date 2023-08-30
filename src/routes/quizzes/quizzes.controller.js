@@ -1,11 +1,12 @@
 
-const { controllerWrapper, getDocumentType } = require('../../utils/common')
+const { controllerWrapper } = require('../../utils/common')
 const { Quizzes, Companies, Questions, Regulations, Selections, Risks, Responses, Documents, sequelize } = require('../../database/models')
 const { paginate } = require('../../database/helper')
 const { responseData, quizFormResponseData, validateQuizRequest } = require('./helper')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const {messages} = require('./messages')
 const { DOCUMENT_TYPE } = require('../../database/constants')
+const { s3Provider } = require('../../providers/s3')
 const uuid = require('uuid').v4
 
 const companyInclude = (id) => {
@@ -80,19 +81,26 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
             questionId: response.questionId,
             selectionId: response.selectionId
         }))
-        const documentFormatted = responses.reduce((prev, curr) => {
+        const documents = responses.reduce(async (prev, curr) => {
             if(!curr.document) return prev
-            const docType = getDocumentType(curr.document)
+            const docType = await s3Provider.getFileType(curr.document.content)
             if(!docType) throw HttpStatusError.unprocesableEntity(messages.docNotValid)
             const data = {
                 id: uuid(),
                 companyId,
                 questionId: curr.questionId,
-                file: curr.document,
+                name: curr.document.filename,
+                file: curr.document.content,
                 type: docType
             }
             return [...prev, data]
         }, [])
+
+        const documentFormatted = await Promise.all(documents.map(async doc => {
+            const key = `system3-${doc.name}`
+            await s3Provider.upload(key, doc.file, doc.type)
+            return {...doc, file: key}
+        }))
         
         const responseData = await Responses.bulkCreate(responseFormatted, {transaction})
         await Documents.bulkCreate(documentFormatted, {transaction})

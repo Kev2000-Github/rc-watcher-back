@@ -43,6 +43,10 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'id'
             }
         },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         type: enumFields(DataTypes, DOCUMENT_TYPE),
         file: {
             type: DataTypes.TEXT,

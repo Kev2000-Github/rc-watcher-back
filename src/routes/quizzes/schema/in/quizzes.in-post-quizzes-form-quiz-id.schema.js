@@ -11,7 +11,13 @@ module.exports = {
                         properties: {
                             questionId: {type: 'string', format: 'uuid'},
                             selectionId: {type: 'string', format: 'uuid'},
-                            document: {type: 'string'}
+                            document: {
+                                type: 'object',
+                                properties: {
+                                    filename: {type: 'string'},
+                                    content: {type: 'string'}
+                                }
+                            }
                         }
                     }
                 },
