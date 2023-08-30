@@ -16,9 +16,9 @@ const ALERT_PRIORITY = {
 }
 
 const DOCUMENT_TYPE = {
-    JPG: 'jpg',
-    PNG: 'png',
-    PDF: 'pdf'
+    JPG: 'image/jpg',
+    PNG: 'image/png',
+    PDF: 'application/pdf'
 }
 
 const ROLES = {

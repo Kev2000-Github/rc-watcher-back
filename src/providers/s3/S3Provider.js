@@ -1,4 +1,3 @@
-const FileType = require('file-type')
 const { Readable } = require('stream')
 const config = require('../../config')
 
@@ -43,7 +42,8 @@ class S3Provider {
         return data instanceof Readable ? 'binary' : 'base64'
     }
 
-    getFileType (data) {
+    async getFileType (data) {
+        const FileType = await import('file-type')
         if(data instanceof Buffer){
             return FileType.fileTypeFromBuffer(data)
         }
@@ -74,6 +74,10 @@ class S3Provider {
 
     bufferToBase64(buffer){
         return buffer.toString('base64')
+    }
+    
+    base64ToBuffer(base64){
+        return Buffer.from(base64.replace(/^data.*;base64,/,''), 'base64')
     }
 }
 

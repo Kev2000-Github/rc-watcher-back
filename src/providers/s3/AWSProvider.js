@@ -23,13 +23,11 @@ class AWSS3Provider extends S3Provider {
 
     async upload(key, resource, contentType = null) {
         const type = contentType ? {mime: contentType} : await this.getFileType(resource)
-        const contentEncoding = this.getContentEncoding(resource)
         const input = {
             Bucket: this.connectionProps.bucket,
             Key: key,
             Body: resource,
             ContentType: type.mime,
-            ContentEncoding: contentEncoding
         }
         const command = new PutObjectCommand(input)
         await this.client.send(command)
