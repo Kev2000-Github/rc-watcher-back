@@ -1,16 +1,12 @@
 
 const { controllerWrapper } = require('../../utils/common')
-const { Quizzes, Companies, Questions, Regulations, Selections, Risks, Responses, Documents, sequelize } = require('../../database/models')
+const { Quizzes, Questions, Regulations, Selections, Risks, Responses, Documents, sequelize } = require('../../database/models')
 const { paginate } = require('../../database/helper')
-const { responseData, quizFormResponseData, validateQuizRequest } = require('./helper')
+const { responseData, quizFormResponseData, validateQuizRequest, companyInclude, getQuizesFilters } = require('./helper')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const {messages} = require('./messages')
 const { s3Provider } = require('../../providers/s3')
 const uuid = require('uuid').v4
-
-const companyInclude = (id) => {
-    return {model: Companies, where: {id}, required: false}
-}
 
 module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
     const {quizId} = req.params
@@ -55,7 +51,7 @@ module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
 module.exports.get_quizzes = controllerWrapper(async (req, res) => {
     const pagination = req.pagination
     const companyId = req.user.Company.id
-    const includeOpts = {include: [Questions, Regulations, companyInclude(companyId)]}
+    const includeOpts = getQuizesFilters(companyId, req.query)
     const opts = {...pagination, ...includeOpts}
     let quizzes = await paginate(Quizzes, opts)
     quizzes.data = quizzes.data.map(quiz => responseData(quiz))

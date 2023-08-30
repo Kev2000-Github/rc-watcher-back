@@ -1,4 +1,4 @@
-const { Questions, Selections } = require('../../database/models')
+const { Questions, Selections, Companies, Regulations } = require('../../database/models')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const { arrayToMap } = require('../../utils/common')
 const {messages} = require('./messages')
@@ -128,8 +128,38 @@ const validateQuizRequest = async (quizId, responses) => {
     return
 }
 
+const getQuizesFilters = (companyId, queryOptions) => {
+    const includeOpts = {include: [Questions, Regulations]}
+    switch(queryOptions.state){
+    case 'completed':
+        includeOpts.include.push(companyInclude(companyId, {required: true}))
+        break
+    case 'pending':
+        includeOpts.include.push(companyInclude(null))
+        break
+    default:
+        includeOpts.include.push(companyInclude(companyId))
+    }
+    return includeOpts
+}
+
+const defaultOpts = {
+    required: false,
+    where: null
+}
+const companyInclude = (id, options = defaultOpts) => {
+    const opts = {...defaultOpts, ...options}
+    return {
+        model: Companies, 
+        where: opts.where ?? {id}, 
+        required: opts.required
+    }
+}
+
 module.exports = {
     responseData: quizResponseData,
     quizFormResponseData,
-    validateQuizRequest
+    validateQuizRequest,
+    getQuizesFilters,
+    companyInclude
 }

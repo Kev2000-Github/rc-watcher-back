@@ -8,7 +8,12 @@ module.exports = {
             type: 'object'
         },
         query: {
-            type: 'object'
+            type: 'object',
+            properties: {
+                state: {type: 'string'},
+                page: {type: 'string'},
+                limit: {type: 'string'}
+            }
         },
         headers: {
             type: 'object'
