@@ -1,4 +1,4 @@
-const { Questions, Selections, Companies, Regulations } = require('../../database/models')
+const { Questions, Selections, Companies, Regulations, Sequelize } = require('../../database/models')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const { arrayToMap } = require('../../utils/common')
 const {messages} = require('./messages')
@@ -129,30 +129,36 @@ const validateQuizRequest = async (quizId, responses) => {
 }
 
 const getQuizesFilters = (companyId, queryOptions) => {
-    const includeOpts = {include: [Questions, Regulations]}
+    const { Op, literal } = Sequelize
+    const options = {include: [Questions, Regulations]}
     switch(queryOptions.state){
     case 'completed':
-        includeOpts.include.push(companyInclude(companyId, {required: true}))
+        options.include.push(companyInclude(companyId, {required: true}))
         break
     case 'pending':
-        includeOpts.include.push(companyInclude(null))
+        options.include.push(companyInclude(companyId))
+        options.where = {id: {[Op.notIn]: literal(
+            `(SELECT quizId FROM companyQuizzes WHERE companyId = "${companyId}")`
+        )}}
         break
     default:
-        includeOpts.include.push(companyInclude(companyId))
+        options.include.push(companyInclude(companyId))
     }
-    return includeOpts
+    return options
 }
 
 const defaultOpts = {
     required: false,
-    where: null
+    where: null,
+    through: undefined
 }
 const companyInclude = (id, options = defaultOpts) => {
     const opts = {...defaultOpts, ...options}
     return {
         model: Companies, 
         where: opts.where ?? {id}, 
-        required: opts.required
+        required: opts.required,
+        through: opts.through
     }
 }
 

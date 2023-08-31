@@ -51,8 +51,8 @@ module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
 module.exports.get_quizzes = controllerWrapper(async (req, res) => {
     const pagination = req.pagination
     const companyId = req.user.Company.id
-    const includeOpts = getQuizesFilters(companyId, req.query)
-    const opts = {...pagination, ...includeOpts}
+    let opts = getQuizesFilters(companyId, req.query)
+    opts = {...opts, ...pagination}
     let quizzes = await paginate(Quizzes, opts)
     quizzes.data = quizzes.data.map(quiz => responseData(quiz))
     res.json({...quizzes})
