@@ -130,20 +130,31 @@ const validateQuizRequest = async (quizId, responses) => {
 
 const getQuizesFilters = (companyId, queryOptions) => {
     const { Op, literal } = Sequelize
-    const options = {include: [Questions, Regulations]}
+    const options = {where: {}, include: [Questions]}
     switch(queryOptions.state){
     case 'completed':
         options.include.push(companyInclude(companyId, {required: true}))
         break
     case 'pending':
         options.include.push(companyInclude(companyId))
-        options.where = {id: {[Op.notIn]: literal(
+        options.where.id = {[Op.notIn]: literal(
             `(SELECT quizId FROM companyQuizzes WHERE companyId = "${companyId}")`
-        )}}
+        )}
         break
     default:
         options.include.push(companyInclude(companyId))
     }
+    if(queryOptions.tags){
+        const tags = queryOptions.tags.split(',')
+        options.include.push({
+            model: Regulations,
+            where: {
+                name: {[Op.in]: tags}
+            },
+            required: true
+        })
+    }
+    else options.include.push(Regulations)
     return options
 }
 

@@ -11,6 +11,7 @@ module.exports = {
             type: 'object',
             properties: {
                 state: {type: 'string'},
+                tags: {type: 'string'},
                 page: {type: 'string'},
                 limit: {type: 'string'}
             }
