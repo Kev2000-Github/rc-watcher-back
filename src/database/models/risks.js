@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
             Risks.belongsTo(models.Regulations, {
                 foreignKey: 'regulationId'
             })
+            Risks.hasOne(models.ViewRiskScore, {
+                foreignKey: 'riskId'
+            })
         }
     }
     Risks.init({

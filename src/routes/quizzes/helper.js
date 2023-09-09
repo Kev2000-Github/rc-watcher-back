@@ -177,6 +177,7 @@ const companyInclude = (id, options = defaultOpts) => {
 module.exports = {
     responseData: quizResponseData,
     quizFormResponseData,
+    regulationResponseData,
     validateQuizRequest,
     getQuizesFilters,
     companyInclude

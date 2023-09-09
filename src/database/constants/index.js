@@ -10,9 +10,9 @@ const ALERT_STATE = {
 }
 
 const ALERT_PRIORITY = {
-    HIGH: 'high',
+    LOW: 'low',
     MEDIUM: 'medium',
-    LOW: 'low'
+    HIGH: 'high',
 }
 
 const DOCUMENT_TYPE = {

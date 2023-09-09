@@ -1,7 +1,8 @@
 
 const { controllerWrapper } = require('../../utils/common')
-const { ViewRiskScore, Quizzes, Companies, Alerts, Solutions, Users, Sequelize } = require('../../database/models')
+const { ViewRiskScore, Quizzes, Companies, Alerts, Solutions, Users, Risks, Regulations, Sequelize } = require('../../database/models')
 const { ALERT_STATE, SOLUTION_STATE } = require('../../database/constants')
+const { topAlertsResponseData, topRisksResponseData } = require('./helper')
 /**
  * Dashboard compliance score and the rest goes here...
  * Compliance Score
@@ -13,6 +14,7 @@ const { ALERT_STATE, SOLUTION_STATE } = require('../../database/constants')
  * Top 10 Risks
  */
 module.exports.get_overviews = controllerWrapper(async (req, res) => {
+    const TOP_LIMIT = 10
     const {notIn} = Sequelize.Op
     const companyId = req.user.Company.id
     //GET RISK SCORE
@@ -52,14 +54,42 @@ module.exports.get_overviews = controllerWrapper(async (req, res) => {
     })
 
     //TODO: GET TOP 10 MOST URGENT ALERTS
+    const topUrgentAlerts = await Alerts.findAll({
+        where: { state: ALERT_STATE.PENDING },
+        include: [
+            {
+                model: Users,
+                where: {companyId},
+                required: true,
+                attributes: []
+            },
+            Regulations
+        ],
+        order: [['priority', 'DESC']],
+        limit: TOP_LIMIT
+    })
 
     //TODO: GET TOP 10 MOST URGENT RISKS
+    const topUrgentRisks = await Risks.findAll({
+        include: [
+            {
+                model: ViewRiskScore,
+                where: {companyId},
+                required: true,
+            },
+            Regulations
+        ],
+        order: [[ViewRiskScore,'riskScore','DESC']],
+        limit: TOP_LIMIT
+    })
 
     res.json({data: {
         complianceScore,
         pendingQuizCount,
         affectingRiskCount,
-        pendingAlertCount,
-        activeSolutionCount
+        alertCount: pendingAlertCount,
+        solutionCount: activeSolutionCount,
+        topAlerts: topUrgentAlerts.map(alert => topAlertsResponseData(alert)),
+        topRisks: topUrgentRisks.map(risk => topRisksResponseData(risk))
     }})
 })
