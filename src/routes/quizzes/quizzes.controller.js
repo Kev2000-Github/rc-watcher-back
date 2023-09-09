@@ -76,20 +76,21 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
             questionId: response.questionId,
             selectionId: response.selectionId
         }))
-        const documents = await responses.reduce(async (prev, curr) => {
-            if(!curr.document) return prev
-            const docType = await s3Provider.getFileType(curr.document.content)
+        const documents = []
+        for(const resp of responses){
+            if(!resp.document) continue
+            const docType = await s3Provider.getFileType(resp.document.content)
             if(!docType) throw HttpStatusError.unprocesableEntity(messages.docNotValid)
             const data = {
                 id: uuid(),
                 companyId,
-                questionId: curr.questionId,
-                name: curr.document.name,
-                file: curr.document.content,
+                questionId: resp.questionId,
+                name: resp.document.name,
+                file: resp.document.content,
                 type: docType.mime
             }
-            return [...prev, data]
-        }, [])
+            documents.push(data)
+        }
 
         const documentFormatted = await Promise.all(documents.map(async doc => {
             const key = `system3-${doc.id}-${doc.name}`
