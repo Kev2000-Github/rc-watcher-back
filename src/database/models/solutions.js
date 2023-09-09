@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
             Solutions.belongsToMany(models.Users, {
                 through: models.UserSolutions
             })
+            Solutions.belongsTo(models.Users, {
+                as: 'MadeBy',
+                foreignKey: 'createdBy'
+            })
         }
     }
     Solutions.init({

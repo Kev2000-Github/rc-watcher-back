@@ -1,6 +1,7 @@
 
 const { controllerWrapper } = require('../../utils/common')
-const { ViewRiskScore, Quizzes, Companies, Sequelize } = require('../../database/models')
+const { ViewRiskScore, Quizzes, Companies, Alerts, Solutions, Users, Sequelize } = require('../../database/models')
+const { ALERT_STATE, SOLUTION_STATE } = require('../../database/constants')
 /**
  * Dashboard compliance score and the rest goes here...
  * Compliance Score
@@ -29,8 +30,26 @@ module.exports.get_overviews = controllerWrapper(async (req, res) => {
     const quizIds = company.Quizzes ? company.Quizzes.map(quiz => quiz.id) : []
     const pendingQuizCount = await Quizzes.count({where: {id: {[notIn]: quizIds}}})
     //TODO: GET ACTIVE ALERT COUNT
-
+    const pendingAlertCount = await Alerts.count({
+        where: { state: ALERT_STATE.PENDING },
+        include: {
+            model: Users,
+            where: {companyId},
+            required: true,
+            attributes: []
+        }
+    })
     //TODO: GET ACTIVE SOLUTION COUNT
+    const activeSolutionCount = await Solutions.count({
+        where: { state: SOLUTION_STATE.ACTIVE },
+        include: {
+            model: Users,
+            as: 'MadeBy',
+            where: {companyId},
+            required: true,
+            attributes: []
+        }
+    })
 
     //TODO: GET TOP 10 MOST URGENT ALERTS
 
@@ -39,6 +58,8 @@ module.exports.get_overviews = controllerWrapper(async (req, res) => {
     res.json({data: {
         complianceScore,
         pendingQuizCount,
-        affectingRiskCount
+        affectingRiskCount,
+        pendingAlertCount,
+        activeSolutionCount
     }})
 })

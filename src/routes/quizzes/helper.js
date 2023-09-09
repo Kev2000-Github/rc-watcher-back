@@ -62,6 +62,7 @@ const riskResponseData = (risk) => {
 const documentResponseData = (doc) => {
     return doc ? {
         id: doc.id,
+        name: doc.name,
         type: doc.type,
         file: doc.file
     } : null
