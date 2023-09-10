@@ -92,7 +92,18 @@ module.exports.post_quizzes_form_quizId = controllerWrapper(async (req, res) => 
             }
             documents.push(data)
         }
+        const uploadedDocs = await Documents.findAll({
+            where: {
+                companyId,
+                questionId: documents.map(doc => doc.questionId)
+            }
+        })
 
+        await Promise.all(uploadedDocs.map(async doc => {
+            const key = `system3-${doc.id}-${doc.name}`
+            await s3Provider.delete(key)
+        }))
+        
         const documentFormatted = await Promise.all(documents.map(async doc => {
             const key = `system3-${doc.id}-${doc.name}`
             const resource = s3Provider.base64ToBuffer(doc.file)
