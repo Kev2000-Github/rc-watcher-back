@@ -11,6 +11,7 @@ router.use('/countries', require('./countries/countries.route').countriesRouter)
 router.use('/quizzes', require('./quizzes/quizzes.route').quizzesRouter)
 router.use('/overviews', require('./overviews/overviews.route').overviewsRouter)
 router.use('/amlprofiles', require('./amlprofiles/amlprofiles.route').amlprofilesRouter)
+router.use('/regulations', require('./regulations/regulations.route').regulationsRouter)
 //SEPARATOR --DON'T TOUCH THIS--
 module.exports = {
     router
