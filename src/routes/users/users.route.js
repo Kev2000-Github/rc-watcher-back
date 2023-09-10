@@ -11,7 +11,7 @@ router.get(
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'users.in-get-users.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'users.out-get-users.schema.js'))),
     authentication,
-    checkRole({whitelist: [ROLES.ADMIN]}),
+    checkRole({whitelist: [ROLES.ADMIN, ROLES.AUDITOR]}),
     companyRestiction,
     pagination,
     controller.get_users
