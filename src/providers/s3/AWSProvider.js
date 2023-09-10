@@ -34,7 +34,7 @@ class AWSS3Provider extends S3Provider {
         return {location: this.connectionProps.bucket, key }
     }
 
-    async download(key) {
+    async download(key, toBase64 = true) {
         const input = {
             Key: key,
             Bucket: this.connectionProps.bucket
@@ -43,7 +43,13 @@ class AWSS3Provider extends S3Provider {
         const response = await this.client.send(command)
         const { Body } = response
         const buffer = await this.streamToBuffer(Body)
-        const content = this.bufferToBase64(buffer)
+        let content
+        if(toBase64){
+            content = this.bufferToBase64(buffer)
+        }
+        else{
+            content = buffer
+        }
         const type = await this.getFileType(content)
         return {
             ...type,

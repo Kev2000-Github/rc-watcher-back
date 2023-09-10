@@ -7,6 +7,7 @@ const { HttpStatusError } = require('../../errors/httpStatusError')
 const {messages} = require('./messages')
 const { s3Provider } = require('../../providers/s3')
 const uuid = require('uuid').v4
+const { Readable } = require('stream')
 
 module.exports.get_quizzes_form_id = controllerWrapper(async (req, res) => {
     const {quizId} = req.params
@@ -126,20 +127,21 @@ module.exports.put_quizzes_form_quizId = controllerWrapper(async (req, res) => {
             questionId: response.questionId,
             selectionId: response.selectionId
         }))
-        const documents = await responses.reduce(async (prev, curr) => {
-            if(!curr.document) return prev
-            const docType = await s3Provider.getFileType(curr.document.content)
+        const documents = []
+        for(const resp of responses){
+            if(!resp.document) continue
+            const docType = await s3Provider.getFileType(resp.document.content)
             if(!docType) throw HttpStatusError.unprocesableEntity(messages.docNotValid)
             const data = {
                 id: uuid(),
                 companyId,
-                questionId: curr.questionId,
-                name: curr.document.name,
-                file: curr.document.content,
+                questionId: resp.questionId,
+                name: resp.document.name,
+                file: resp.document.content,
                 type: docType.mime
             }
-            return [...prev, data]
-        }, [])
+            documents.push(data)
+        }
         const docs = await Documents.findAll({...opts, attributes: ['id', 'file']})
         await Promise.all(docs.map(async doc => {
             await s3Provider.delete(doc.file)
@@ -177,3 +179,16 @@ module.exports.delete_quizzes_form_quizId = controllerWrapper(async (req, res) =
     })
 })
 
+
+
+module.exports.get_quizzes_document_id = controllerWrapper(async (req, res) => {
+    const {id} = req.params
+    const document = await Documents.findByPk(id)
+    if(!document) throw HttpStatusError.notFound(messages.docNotFound)
+    const {content} = await s3Provider.download(document.file, false)
+    const type = await s3Provider.getFileType(content)
+    const stream = Readable.from(content)
+    res.setHeader('Content-Type', type.mime)
+    res.setHeader('Content-Disposition', `attachment; filename="${document.name}"`)
+    stream.pipe(res)
+})

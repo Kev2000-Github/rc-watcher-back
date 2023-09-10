@@ -52,6 +52,13 @@ router.delete(
     checkRole({whitelist: [ROLES.ADMIN]}),
     controller.delete_quizzes_form_quizId
 )
+
+router.get(
+    '/document/:id', 
+    validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'quizzes.in-get-quizzes-document-id.schema.js'))),
+    validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'quizzes.out-get-quizzes-document-id.schema.js'))),
+    controller.get_quizzes_document_id
+)
 //ROUTES ABOVE --DON'T TOUCH THIS--
 module.exports = {
     quizzesRouter: router

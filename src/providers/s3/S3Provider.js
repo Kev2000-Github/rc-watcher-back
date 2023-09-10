@@ -59,7 +59,7 @@ class S3Provider {
     }
 
     async streamToBuffer(stream) {
-        return Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             const chunks = []
             stream.on('data', chunk => {
                 chunks.push(chunk)

@@ -17,6 +17,7 @@ const ALERT_PRIORITY = {
 
 const DOCUMENT_TYPE = {
     JPG: 'image/jpg',
+    JPEG: 'image/jpeg',
     PNG: 'image/png',
     PDF: 'application/pdf'
 }

@@ -12,6 +12,10 @@ module.exports = {
             code: 'quiz_DNV',
             message: 'Document only accepts type JPG, PNG and PDF'
         },
+        docNotFound: {
+            code: 'quiz_DNF',
+            message: 'Document not found'
+        },
         quizNotCompleted: {
             code: 'quiz_NC',
             message: 'Quiz not completed yet'

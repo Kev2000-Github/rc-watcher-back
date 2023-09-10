@@ -36,7 +36,7 @@ module.exports.post_registrations = controllerWrapper(async (req, res) => {
     const createdUser = await Users.findByPk(userId, includeOpts)
     res.json({
         user: responseData(createdUser), 
-        session: { id: session.id }
+        session: session.id
     })
 })
 
