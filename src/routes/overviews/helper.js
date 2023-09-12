@@ -1,6 +1,5 @@
 const { regulationResponseData } = require('../quizzes/helper')
 
-
 module.exports.topAlertsResponseData = (alert) => {
     return alert ? {
         id: alert.id,
