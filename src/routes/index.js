@@ -13,6 +13,7 @@ router.use('/overviews', require('./overviews/overviews.route').overviewsRouter)
 router.use('/amlprofiles', require('./amlprofiles/amlprofiles.route').amlprofilesRouter)
 router.use('/regulations', require('./regulations/regulations.route').regulationsRouter)
 router.use('/risks', require('./risks/risks.route').risksRouter)
+router.use('/alerts', require('./alerts/alerts.route').alertsRouter)
 //SEPARATOR --DON'T TOUCH THIS--
 module.exports = {
     router
