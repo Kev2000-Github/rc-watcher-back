@@ -1,18 +1,16 @@
 const { controllerWrapper } = require('../../utils/common')
 const { Solutions, Steps, sequelize } = require('../../database/models')
 const { paginate } = require('../../database/helper')
-const { responseData } = require('./helper')
+const { responseData, getSolutionsFilters } = require('./helper')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const { messages } = require('./messages')
 const uuid = require('uuid').v4
 const { includeOpts, detailedIncludeOpts } = require('./helper')
 
 module.exports.get_solutions = controllerWrapper(async (req, res) => {
-    const state = req.query.state
-    const whereOpts = { where: {} }
-    if(state) whereOpts.where['state'] = state
+    const filterOpts = getSolutionsFilters(req.query)
     const pagination = req.pagination
-    const options = { ...whereOpts, ...pagination, ...includeOpts }
+    const options = { ...filterOpts, ...pagination, ...includeOpts }
     const solutions = await paginate(Solutions, options)
     solutions.data = solutions.data.map(solution => responseData(solution))
     res.json(solutions)

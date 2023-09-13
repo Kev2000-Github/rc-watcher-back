@@ -1,18 +1,14 @@
 const { controllerWrapper } = require('../../utils/common')
 const { Alerts } = require('../../database/models')
 const { paginate } = require('../../database/helper')
-const { responseData } = require('./helper')
+const { responseData, getAlertsFilter } = require('./helper')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const { messages } = require('./messages')
 const uuid = require('uuid').v4
 const { includeOpts } = require('./helper')
 
 module.exports.get_alerts = controllerWrapper(async (req, res) => {
-    const state = req.query.state
-    const priority = req.query.priority
-    const whereOpts = { where: {} }
-    if(state) whereOpts.where['state'] = state
-    if(priority) whereOpts.where['priority'] = priority
+    const whereOpts = getAlertsFilter(req.query)
     const pagination = req.pagination
     const options = { ...whereOpts, ...pagination, ...includeOpts }
     let alerts = await paginate(Alerts, options)

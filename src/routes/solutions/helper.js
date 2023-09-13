@@ -1,6 +1,7 @@
 const { Users, Alerts, UserSolutions, Steps, Regulations } = require('../../database/models')
 const { responseData: userResponseData } = require('../users/helper')
 const { responseData: alertResponseData } = require('../alerts/helper')
+const { SOLUTION_STATE } = require('../../database/constants')
 
 const solutionResponseData = (solution) => {
     return solution ? {
@@ -58,8 +59,17 @@ const detailedIncludeOpts = {
     ]
 }
 
+const getSolutionsFilters = (queryURLs) => {
+    const state = queryURLs.state
+    if([SOLUTION_STATE.ACTIVE, SOLUTION_STATE.INACTIVE].includes(state)){
+        return {where: {state}}
+    }
+    return {}
+}
+
 module.exports = {
     responseData: solutionResponseData,
+    getSolutionsFilters,
     includeOpts,
     detailedIncludeOpts
 }
