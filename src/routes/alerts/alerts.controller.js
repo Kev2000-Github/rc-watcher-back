@@ -6,7 +6,6 @@ const { HttpStatusError } = require('../../errors/httpStatusError')
 const { messages } = require('./messages')
 const uuid = require('uuid').v4
 const { includeOpts } = require('./helper')
-const { ALERT_STATE } = require('../../database/constants/index')
 
 
 module.exports.get_alerts = controllerWrapper(async (req, res) => {
@@ -33,27 +32,25 @@ module.exports.post_alerts = controllerWrapper(async (req, res) => {
 
     const newAlert = await Alerts.create({
         id: alertId,
-
         title,
         description,
         priority,
         createdBy,
         regulationId,
-
     })
     res.json({ data: responseData(newAlert) })
 })
 
 module.exports.put_alerts_id = controllerWrapper(async (req, res) => {
     const { id } = req.params
-    const { title, description, priority, createdBy, regulationId } = req.body
+    const { title, description, priority, createdBy, regulationId, state } = req.body
     const alert = await Alerts.findOne({ where: { id }, ...includeOpts })
     if (!alert) throw HttpStatusError.notFound(messages.notFound)
     await alert.update({
         title,
         description,
         priority,
-        state: ALERT_STATE.PENDING,
+        state,
         createdBy,
         regulationId
     })

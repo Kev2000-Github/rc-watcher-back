@@ -1,3 +1,4 @@
+const { regulationResponseData } = require('../quizzes/helper')
 
 const alertResponseData = (alert) => {
     return alert ? {
@@ -11,16 +12,6 @@ const alertResponseData = (alert) => {
     } : null
 }
 
-const regulationResponseData = (regulation) => {
-    return regulation ? {
-        id: regulation.id,
-        name: regulation.name,
-        description: regulation.description,
-    } : null
-
-}
-
 module.exports = {
     responseData: alertResponseData,
-    regulationResponseData,
 }
