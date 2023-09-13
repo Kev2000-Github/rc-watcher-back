@@ -1,4 +1,6 @@
+const { Users, Regulations } = require('../../database/models')
 const { regulationResponseData } = require('../quizzes/helper')
+const { responseData: userResponseData } = require('../users/helper')
 
 const alertResponseData = (alert) => {
     return alert ? {
@@ -7,11 +9,16 @@ const alertResponseData = (alert) => {
         description: alert.description,
         priority: alert.priority,
         state: alert.state,
-        createBy: alert.createBy,
+        CreatedBy: userResponseData(alert.User),
         Regulation: regulationResponseData(alert.Regulation),
     } : null
 }
 
+const includeOpts = {
+    include: [Users, Regulations]
+}
+
 module.exports = {
     responseData: alertResponseData,
+    includeOpts
 }

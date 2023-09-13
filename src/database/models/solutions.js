@@ -16,11 +16,16 @@ module.exports = (sequelize, DataTypes) => {
                 through: models.AlertSolutions
             })
             Solutions.belongsToMany(models.Users, {
-                through: models.UserSolutions
+                as: 'Responsables',
+                through: models.UserSolutions,
+                foreignKey: 'solutionId'
             })
             Solutions.belongsTo(models.Users, {
                 as: 'MadeBy',
                 foreignKey: 'createdBy'
+            })
+            Solutions.hasMany(models.Steps, {
+                foreignKey: 'solutionId'
             })
         }
     }

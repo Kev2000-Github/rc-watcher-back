@@ -13,7 +13,7 @@ router.get(
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'solutions.out-get-solutions.schema.js'))),
     pagination,
     authentication,
-    checkRole({whitelist: [ROLES.ADMIN, ROLES.AUDITOR, ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN, ROLES.AUDITOR]}),
     controller.get_solutions
 )
 
@@ -22,7 +22,7 @@ router.get(
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'solutions.in-get-solutions-id.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'solutions.out-get-solutions-id.schema.js'))),
     authentication,
-    checkRole({whitelist: [ROLES.ADMIN, ROLES.AUDITOR, ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN, ROLES.AUDITOR]}),
     controller.get_solutions_id
 )
 
@@ -30,9 +30,8 @@ router.post(
     '/', 
     validateRequestSchema(require(resolve(__dirname, 'schema', 'in', 'solutions.in-post-solutions.schema.js'))),
     validateResponseSchema(require(resolve(__dirname, 'schema', 'out', 'solutions.out-post-solutions.schema.js'))),
-    
     authentication,
-    checkRole({whitelist: [ROLES.ADMIN, ROLES.OPERATOR]}),
+    checkRole({whitelist: [ROLES.ADMIN]}),
     controller.post_solutions
 )
 router.delete(

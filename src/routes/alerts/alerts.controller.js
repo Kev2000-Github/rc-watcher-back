@@ -7,27 +7,26 @@ const { messages } = require('./messages')
 const uuid = require('uuid').v4
 const { includeOpts } = require('./helper')
 
-
 module.exports.get_alerts = controllerWrapper(async (req, res) => {
     const pagination = req.pagination
-    const options = { ...pagination }
+    const options = { ...pagination, ...includeOpts }
     let alerts = await paginate(Alerts, options)
     alerts.data = alerts.data.map(alert => responseData(alert))
 
     res.json({ ...alerts })
 })
 
-
 module.exports.get_alerts_id = controllerWrapper(async (req, res) => {
     const { id } = req.params
     const options = { ...includeOpts, where: { id } }
     const alert = await Alerts.findOne(options)
-    if (!Alerts) throw HttpStatusError.notFound(messages.notFound)
+    if (!alert) throw HttpStatusError.notFound(messages.notFound)
     res.json({ data: responseData(alert) })
 })
 
 module.exports.post_alerts = controllerWrapper(async (req, res) => {
-    const { title, description, priority, createdBy, regulationId } = req.body
+    const { title, description, priority, regulationId } = req.body
+    const createdBy = req.user.id
     const alertId = uuid()
 
     const newAlert = await Alerts.create({
