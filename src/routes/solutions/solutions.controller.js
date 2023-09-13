@@ -5,11 +5,14 @@ const { responseData } = require('./helper')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const { messages } = require('./messages')
 const uuid = require('uuid').v4
-const { includeOpts } = require('./helper')
+const { includeOpts, detailedIncludeOpts } = require('./helper')
 
 module.exports.get_solutions = controllerWrapper(async (req, res) => {
+    const state = req.query.state
+    const whereOpts = { where: {} }
+    if(state) whereOpts.where['state'] = state
     const pagination = req.pagination
-    const options = { ...pagination, ...includeOpts }
+    const options = { ...whereOpts, ...pagination, ...includeOpts }
     const solutions = await paginate(Solutions, options)
     solutions.data = solutions.data.map(solution => responseData(solution))
     res.json(solutions)
@@ -17,7 +20,7 @@ module.exports.get_solutions = controllerWrapper(async (req, res) => {
 
 module.exports.get_solutions_id = controllerWrapper(async (req, res) => {
     const { id } = req.params
-    const options = { ...includeOpts, where: { id } }
+    const options = { ...detailedIncludeOpts, where: { id } }
     const solution = await Solutions.findOne(options)
     if (!solution) throw HttpStatusError.notFound(messages.notFound)
     res.json({ data: responseData(solution) })

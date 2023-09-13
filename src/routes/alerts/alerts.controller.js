@@ -8,8 +8,13 @@ const uuid = require('uuid').v4
 const { includeOpts } = require('./helper')
 
 module.exports.get_alerts = controllerWrapper(async (req, res) => {
+    const state = req.query.state
+    const priority = req.query.priority
+    const whereOpts = { where: {} }
+    if(state) whereOpts.where['state'] = state
+    if(priority) whereOpts.where['priority'] = priority
     const pagination = req.pagination
-    const options = { ...pagination, ...includeOpts }
+    const options = { ...whereOpts, ...pagination, ...includeOpts }
     let alerts = await paginate(Alerts, options)
     alerts.data = alerts.data.map(alert => responseData(alert))
 
