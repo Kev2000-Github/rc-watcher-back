@@ -14,6 +14,7 @@ router.use('/amlprofiles', require('./amlprofiles/amlprofiles.route').amlprofile
 router.use('/regulations', require('./regulations/regulations.route').regulationsRouter)
 router.use('/risks', require('./risks/risks.route').risksRouter)
 router.use('/alerts', require('./alerts/alerts.route').alertsRouter)
+router.use('/solutions', require('./solutions/solutions.route').solutionsRouter)
 //SEPARATOR --DON'T TOUCH THIS--
 module.exports = {
     router
