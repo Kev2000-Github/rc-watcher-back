@@ -6,7 +6,6 @@ const { responseData } = require('./helper')
 module.exports.get_amlprofiles = controllerWrapper(async (req, res) => {
     const {Op} = Sequelize
     const {fullName, country, birthdate} = req.query
-    console.log(fullName)
     const fullNameFormatted = fullName.replaceAll('-',' ').trim()
     const optsWhere = {
         fullName: {
