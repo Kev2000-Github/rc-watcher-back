@@ -1,16 +1,22 @@
 const { controllerWrapper } = require('../../utils/common')
-const { Solutions, Steps, sequelize } = require('../../database/models')
+const { Solutions, Steps, Alerts, sequelize } = require('../../database/models')
 const { paginate } = require('../../database/helper')
 const { responseData, getSolutionsFilters } = require('./helper')
 const { HttpStatusError } = require('../../errors/httpStatusError')
 const { messages } = require('./messages')
 const uuid = require('uuid').v4
 const { includeOpts, detailedIncludeOpts } = require('./helper')
+const { ALERT_STATE } = require('../../database/constants')
 
 module.exports.get_solutions = controllerWrapper(async (req, res) => {
     const filterOpts = getSolutionsFilters(req.query)
     const pagination = req.pagination
-    const options = { ...filterOpts, ...pagination, ...includeOpts }
+    const options = { 
+        ...filterOpts, 
+        ...pagination, 
+        ...includeOpts,
+        order: [['createdAt', 'DESC']]
+    }
     const solutions = await paginate(Solutions, options)
     solutions.data = solutions.data.map(solution => responseData(solution))
     res.json(solutions)
@@ -44,6 +50,11 @@ module.exports.post_solutions = controllerWrapper(async (req, res) => {
         await Steps.bulkCreate(stepInputs, {transaction})
         await newSolution.setResponsables(responsableIds, {transaction})
         await newSolution.setAlerts(alertIds, {transaction})
+        await Alerts.update({ state: ALERT_STATE.SOLVED }, 
+            { where: { 
+                id: alertIds,
+                state: ALERT_STATE.PENDING
+            }, transaction })
     })
     const solution = await Solutions.findByPk(solutionId, includeOpts)
     res.json({ data: responseData(solution) })

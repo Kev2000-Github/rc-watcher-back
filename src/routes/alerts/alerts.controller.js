@@ -10,7 +10,12 @@ const { includeOpts } = require('./helper')
 module.exports.get_alerts = controllerWrapper(async (req, res) => {
     const whereOpts = getAlertsFilter(req.query)
     const pagination = req.pagination
-    const options = { ...whereOpts, ...pagination, ...includeOpts }
+    const options = { 
+        ...whereOpts, 
+        ...pagination, 
+        ...includeOpts, 
+        order: [['createdAt', 'DESC']]
+    }
     let alerts = await paginate(Alerts, options)
     alerts.data = alerts.data.map(alert => responseData(alert))
 
