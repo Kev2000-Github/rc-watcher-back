@@ -8,12 +8,13 @@ const uuid = require('uuid').v4
 const { includeOpts } = require('./helper')
 
 module.exports.get_alerts = controllerWrapper(async (req, res) => {
+    const companyId = req.user.Company.id
     const whereOpts = getAlertsFilter(req.query)
     const pagination = req.pagination
     const options = { 
         ...whereOpts, 
         ...pagination, 
-        ...includeOpts, 
+        ...includeOpts(companyId), 
         order: [['createdAt', 'DESC']]
     }
     let alerts = await paginate(Alerts, options)
@@ -23,8 +24,9 @@ module.exports.get_alerts = controllerWrapper(async (req, res) => {
 })
 
 module.exports.get_alerts_id = controllerWrapper(async (req, res) => {
+    const companyId = req.user.Company.id
     const { id } = req.params
-    const options = { ...includeOpts, where: { id } }
+    const options = { ...includeOpts(companyId), where: { id } }
     const alert = await Alerts.findOne(options)
     if (!alert) throw HttpStatusError.notFound(messages.notFound)
     res.json({ data: responseData(alert) })
@@ -47,9 +49,10 @@ module.exports.post_alerts = controllerWrapper(async (req, res) => {
 })
 
 module.exports.put_alerts_id = controllerWrapper(async (req, res) => {
+    const companyId = req.user.Company.id
     const { id } = req.params
     const { title, description, priority, createdBy, regulationId, state } = req.body
-    const alert = await Alerts.findOne({ where: { id }, ...includeOpts })
+    const alert = await Alerts.findOne({ where: { id }, ...includeOpts(companyId) })
     if (!alert) throw HttpStatusError.notFound(messages.notFound)
     await alert.update({
         title,
@@ -63,8 +66,9 @@ module.exports.put_alerts_id = controllerWrapper(async (req, res) => {
 })
 
 module.exports.delete_alerts_id = controllerWrapper(async (req, res) => {
+    const companyId = req.user.Company.id
     const { id } = req.params
-    const alert = await Alerts.findOne({ where: { id }, ...includeOpts })
+    const alert = await Alerts.findOne({ where: { id }, ...includeOpts(companyId) })
     if (!alert) throw HttpStatusError.notFound(messages.notFound)
     await alert.destroy()
     res.json({ data: responseData(alert) })

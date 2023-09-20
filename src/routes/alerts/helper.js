@@ -15,9 +15,13 @@ const alertResponseData = (alert) => {
     } : null
 }
 
-const includeOpts = {
-    include: [Users, Regulations]
-}
+const includeOpts = (companyId) => ({
+    include: [{
+        model: Users,
+        required: true,
+        where: {companyId}
+    }, Regulations]
+})
 
 const getAlertsFilter = (queryURLs) => {
     const state = queryURLs.state

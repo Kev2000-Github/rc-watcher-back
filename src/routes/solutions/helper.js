@@ -24,7 +24,7 @@ const stepResponseData = (step) => {
     } : null
 }
 
-const includeOpts = {
+const includeOpts = (companyId) => ({
     include: [
         Alerts,
         {
@@ -33,10 +33,14 @@ const includeOpts = {
         },
         {
             model: Users,
+            required: true,
+            where: {
+                companyId: companyId
+            },
             as: 'MadeBy'
         }
     ]
-}
+})
 
 const detailedIncludeOpts = {
     include: [

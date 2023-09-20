@@ -9,12 +9,13 @@ const { includeOpts, detailedIncludeOpts } = require('./helper')
 const { ALERT_STATE } = require('../../database/constants')
 
 module.exports.get_solutions = controllerWrapper(async (req, res) => {
+    const companyId = req.user.Company.id
     const filterOpts = getSolutionsFilters(req.query)
     const pagination = req.pagination
     const options = { 
         ...filterOpts, 
         ...pagination, 
-        ...includeOpts,
+        ...includeOpts(companyId),
         order: [['createdAt', 'DESC']]
     }
     const solutions = await paginate(Solutions, options)
@@ -34,7 +35,7 @@ module.exports.post_solutions = controllerWrapper(async (req, res) => {
     const { title, description, steps = [], responsableIds = [], alertIds = [] } = req.body
     const createdBy = req.user.id
     const solutionId = uuid()
-
+    const companyId = req.user.Company.id
     await sequelize.transaction(async transaction => {
         const newSolution = await Solutions.create({
             id: solutionId,
@@ -56,13 +57,14 @@ module.exports.post_solutions = controllerWrapper(async (req, res) => {
                 state: ALERT_STATE.PENDING
             }, transaction })
     })
-    const solution = await Solutions.findByPk(solutionId, includeOpts)
+    const solution = await Solutions.findByPk(solutionId, includeOpts(companyId))
     res.json({ data: responseData(solution) })
 })
 
 module.exports.delete_solutions_id = controllerWrapper(async (req, res) => {
+    const companyId = req.user.Company.id
     const { id } = req.params
-    const solutions = await Solutions.findOne({ where: { id }, ...includeOpts })
+    const solutions = await Solutions.findOne({ where: { id }, ...includeOpts(companyId) })
     if (!solutions) throw HttpStatusError.notFound(messages.notFound)
     return sequelize.transaction(async transaction => {
         await Steps.destroy({where: {solutionId: id}, transaction})
@@ -74,6 +76,7 @@ module.exports.delete_solutions_id = controllerWrapper(async (req, res) => {
 
 module.exports.put_solutions_id = controllerWrapper(async (req, res) => {
     const { id } = req.params
+    const companyId = req.user.Company.id
     const { title, description, state, steps, responsableIds } = req.body
     let solution = await Solutions.findByPk(id)
     if (!solution) throw HttpStatusError.notFound(messages.notFound)
@@ -96,6 +99,6 @@ module.exports.put_solutions_id = controllerWrapper(async (req, res) => {
             await solution.setResponsables(responsableIds, {transaction})
         }
     })
-    solution = await Solutions.findByPk(id, includeOpts)
+    solution = await Solutions.findByPk(id, includeOpts(companyId))
     res.json({ data: responseData(solution) })
 })
