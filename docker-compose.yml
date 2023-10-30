@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: "rc-watcher-back"
+    build: .
+    environment:
+      PORT: ${PORT}
+      HOST_USERNAME: ${HOST_USERNAME}
+      HOST_PASSWORD: ${HOST_PASSWORD}
+      HOST_DATABASE: ${HOST_DATABASE}
+      HOST_HOST: ${HOST_HOST}
+      HOST_LOGGING: ${HOST_LOGGING}
+      AWS_REGION: ${AWS_REGION},
+      AWS_ENDPOINT: ${AWS_ENDPOINT},
+      AWS_BUCKET: ${AWS_BUCKET},
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src
+      - /usr/src/node_modules
+    depends_on:
+      database:
+        condition: service_started
+    entrypoint: npm run dev
+  database:
+    container_name: rc-watcher-mysql
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: ${HOST_PASSWORD}
+    volumes:
+      - "mysql:/var/lib/mysql"
+  minio:
+    image: minio/minio
+    container_name: rc-watcher-minio
+    ports:
+      - "9001:9001"
+    volumes:
+      - minio_storage:/data
+    environment:
+      MINIO_ROOT_USER: ${AWS_ACCESS_KEY_ID}
+      MINIO_ROOT_PASSWORD: ${AWS_SECRET_ACCESS_KEY}
+    command: server --console-address ":9001" /data
+volumes:
+  default:
+    name: "app"
+  minio_storage:
+  mysql:
+networks:
+  default:
+    name: "rc-watcher-net"

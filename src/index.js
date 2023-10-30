@@ -1,17 +1,17 @@
-const express = require('express')
-const cors = require('cors')
-const app = express()
-const http = require('http').Server(app)
-require('dotenv').config()
-const { router } = require('./routes')
-const {errorHandler} = require('./errors/errorHandler')
-const {PORT} = require('./config')
+const express = require("express");
+const cors = require("cors");
+const app = express();
+const http = require("http").Server(app);
+require("dotenv").config();
+const { router } = require("./routes");
+const { errorHandler } = require("./errors/errorHandler");
+const { PORT } = require("./config");
 
-app.use(cors())
-app.use(express.json({limit: '5mb'}))
-app.use('/v1', router)
-app.use(errorHandler)
+app.use(cors());
+app.use(express.json({ limit: "5mb" }));
+app.use("/v1", router);
+app.use(errorHandler);
 
 http.listen(PORT, () => {
-    console.log(`Server is up on port ${PORT}`)
-})
+  console.log(`Server is up on port ${PORT}`);
+});
