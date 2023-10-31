@@ -1,55 +1,55 @@
 'use strict'
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-    async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('questions', {
-            id: {
-                allowNull: false,
-                primaryKey: true,
-                type: Sequelize.STRING
-            },
-            riskId: {
-                type: Sequelize.STRING,
-                allowNull: false,
-                references: {
-                    model: 'risks',
-                    key: 'id'
-                }
-            },
-            quizId: {
-                type: Sequelize.STRING,
-                allowNull: false,
-                references: {
-                    model: 'quizzes',
-                    key: 'id'
-                }
-            },
-            description: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-            hasDoc: {
-                type: Sequelize.BOOLEAN,
-                allowNull: false
-            },
-            isMultiple: {
-                type: Sequelize.BOOLEAN,
-                allowNull: false
-            },
-            createdAt: {
-                type: Sequelize.DATE,
-                allowNull: false
-            },
-            updatedAt: {
-                type: Sequelize.DATE,
-                allowNull: false
-            },
-            deletedAt: {
-                type: Sequelize.DATE
-            }
-        })
-    },
-    async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('questions')
-    }
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('questions', {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        type: Sequelize.STRING
+      },
+      riskId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        references: {
+          model: 'risks',
+          key: 'id'
+        }
+      },
+      quizId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        references: {
+          model: 'quizzes',
+          key: 'id'
+        }
+      },
+      description: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      hasDoc: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+      },
+      isMultiple: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      deletedAt: {
+        type: Sequelize.DATE
+      }
+    })
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('questions')
+  }
 }

@@ -28,10 +28,10 @@ const viewName = 'viewRiskScore'
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-    async up(queryInterface, Sequelize) {
-        await queryInterface.sequelize.query(`CREATE VIEW ${viewName} AS ${query}`)
-    },
-    async down(queryInterface, Sequelize) {
-        await queryInterface.sequelize.query(`DROP VIEW ${viewName}`)
-    }
+  async up(queryInterface, Sequelize) {
+    await queryInterface.sequelize.query(`CREATE VIEW ${viewName} AS ${query}`)
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.sequelize.query(`DROP VIEW ${viewName}`)
+  }
 }

@@ -17,5 +17,5 @@ router.use('/alerts', require('./alerts/alerts.route').alertsRouter)
 router.use('/solutions', require('./solutions/solutions.route').solutionsRouter)
 //SEPARATOR --DON'T TOUCH THIS--
 module.exports = {
-    router
+  router
 }

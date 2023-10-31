@@ -1,8 +1,8 @@
 module.exports = {
-    messages: {
-        notFound: {
-            code: 'alert_NF',
-            message: 'Alert not found'
-        }
+  messages: {
+    notFound: {
+      code: 'alert_NF',
+      message: 'Alert not found'
     }
+  }
 }
